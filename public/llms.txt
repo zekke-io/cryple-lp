@@ -1,30 +1,30 @@
 # Zekke
 
-> Zekke is a zero-knowledge encrypted vault for passwords, seed phrases, notes, long-form documents and, soon, files. Everything is encrypted in the browser before it is sent, with keys derived from a BIP39 recovery phrase that only the user holds. The recovery phrase is the account: there is no email, no password, and no account recovery of any kind.
+> Zekke is a zero-knowledge encrypted vault for passwords, seed phrases, notes and long documents. Everything is encrypted in the browser before it is sent, with keys that only the user holds. The recovery phrase is the account: there is no email, no password, and no account recovery of any kind.
 
 Zekke is built by Zekke LLC (Sheridan, Wyoming, USA). The website is available in English, Spanish and Brazilian Portuguese.
 
 ## What it stores
 
 - Secrets: seed phrases, account details, credentials
+- Passwords
 - Notes
 - Long-form documents that sync across devices as you type, encrypted end to end; the server stores and forwards sealed changes and merges nothing
-- Passwords
-- Encrypted file storage (images and PDFs) and private sharing of one item with one person, planned for December 2026
+- Encrypted files (images and PDFs) and private sharing of one item with one person, planned for December 2026
 
 ## How it works
 
-1. The browser generates a 12- or 24-word BIP39 recovery phrase and derives every key from it locally. Nothing is sent.
-2. Every item gets its own random key, generated on the device and wrapped under a key derived from the phrase.
-3. The server receives a sealed blob plus the little that routing needs: its size and when it changed. There is no master key, no recovery database and no support tool that can open a vault.
-4. Typing the phrase into a new browser restores the whole vault. A 6-digit PIN locks the app on each device.
+1. The browser generates a 12- or 24-word BIP39 recovery phrase on the user's device. The account address and the root keys are derived from it locally. Nothing is sent. The phrase itself is never stored on a device.
+2. Every item gets its own random key, generated on the device. It is wrapped under a random key for that kind of data, and that key is wrapped to the recovery phrase and to each device that holds it.
+3. The server receives a sealed blob plus what routing needs: its size and when it changed. It also sees how many devices an account has and who is connected to whom. There is no master key, no recovery database and no support tool that can open a vault.
+4. Typing the phrase into a new browser enrols it as a device and restores the whole vault. Each device has its own keys and a 6-digit PIN that locks the app.
 
 ## Security model
 
-- Zero-knowledge by construction, not by policy: Zekke cannot read user data, including under legal compulsion, because it never holds a key that could decrypt it.
-- Losing the recovery phrase means losing the vault. Nobody, including Zekke, can restore access. Users verify their copy of the phrase at sign-up and receive a printable recovery kit.
-- Standard mode: the PIN stays on the device; forgetting it only means signing in again with the phrase.
-- Paranoid mode: the server also checks the PIN, so the phrase and the PIN together are required (two factors). Forgetting the PIN ends a Paranoid account.
+- Zero-knowledge by construction, not by policy: Zekke cannot read user data, even under legal compulsion, because it never holds a key that could decrypt it. Zekke does not claim anonymity: it can see that items exist, roughly how large they are, and when they changed.
+- Losing the recovery phrase means losing the vault. Nobody, including Zekke, can restore access. Users verify their copy of the phrase at sign-up and receive a printable recovery kit. A lost device is different: it can be removed from another device or with the phrase, and the keys it held are rotated.
+- Standard mode: the device PIN unlocks the keys on that device. The server limits guesses through an OPRF and never sees the PIN. After too many wrong tries the device is enrolled again with the phrase.
+- Paranoid mode: everything the recovery phrase signs also needs an account PIN, so a stolen phrase enrols nothing (two factors). Forgetting the account PIN ends the account.
 - Post-quantum: data at rest uses AES-256-GCM, which survives quantum attacks. Sharing between accounts uses PQXDH, a hybrid of X25519 and ML-KEM-768, so an attacker must break both a classical and a post-quantum algorithm.
 
 ## Technical specifications
@@ -33,10 +33,10 @@ Zekke is built by Zekke LLC (Sheridan, Wyoming, USA). The website is available i
 - Classic key exchange: X25519 (ECDH)
 - Post-quantum KEM: ML-KEM-768 (FIPS 203), for sharing
 - Hybrid protocol: PQXDH (X25519 + ML-KEM-768), for sharing
-- Key derivation: BIP39 → SLIP-0010 P-256
-- Authentication: ECDSA P-256 signature over a fresh server challenge; no secret is transmitted
-- PIN stretching: PBKDF2-SHA256, 600,000 iterations, client-side
-- Server hashing: Argon2id (64 MiB, t=3, p=4)
+- Key derivation: BIP39 (PBKDF2-HMAC-SHA512, 2048 iterations) → SLIP-0010 P-256
+- Authentication: ECDSA P-256 signature over a fresh, timestamped, single-use challenge; no secret is transmitted
+- PIN rationing: OPRF (RFC 9497, ristretto255-SHA512); the server counts guesses and never sees the PIN
+- PIN derivation: Argon2id (64 MiB, t=3, p=1), client-side
 
 ## Business model and pricing
 
@@ -46,21 +46,21 @@ Zekke is built by Zekke LLC (Sheridan, Wyoming, USA). The website is available i
 
 ## Release status
 
-- September 2026: staging release, live now at https://test-app.Zekke.io. It includes the vault, encrypted notes and synced documents, in Standard and Paranoid mode.
+- September 2026: staging release, live now at https://test-app.zekke.io. It includes the vault, encrypted notes and synced documents, in Standard and Paranoid mode.
 - December 2026: the Drive (encrypted files) and private sharing.
 - 2027: production launch; no date yet.
 
 ## Pages
 
-- [Home (English)](https://Zekke.io/): product overview, features, security model and roadmap
-- [Home (Español)](https://Zekke.io/es)
-- [Home (Português, Brasil)](https://Zekke.io/pt-br)
-- [Try the app](https://test-app.Zekke.io): staging release
-- [Security policy](https://Zekke.io/security-policy): how to report a vulnerability
-- [Privacy policy](https://Zekke.io/privacy): the landing page collects only the waitlist email address
-- [Terms of service](https://Zekke.io/terms)
+- [Home (English)](https://zekke.io/): product overview, security model, specifications, pricing and release status
+- [Home (Español)](https://zekke.io/es)
+- [Home (Português, Brasil)](https://zekke.io/pt-br)
+- [Try the app](https://test-app.zekke.io): staging release
+- [Security policy](https://zekke.io/security-policy): how to report a vulnerability
+- [Privacy policy](https://zekke.io/privacy): the landing page collects only the waitlist email address
+- [Terms of service](https://zekke.io/terms)
 
 ## Contact
 
-- Email: contact@Zekke.io
+- Email: contact@zekke.io
 - Mail: Zekke LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA

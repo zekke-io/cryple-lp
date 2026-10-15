@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { ImageResponse } from 'next/og';
 import { getDictionary } from '@/lib/dictionaries';
-import { SITE_NAME, locales } from '@/lib/site';
+import { locales } from '@/lib/site';
 
 export const alt = 'Zekke — zero-knowledge encrypted vault';
 export const size = { width: 1200, height: 630 };
@@ -15,7 +15,7 @@ export function generateStaticParams() {
 export default async function OpenGraphImage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const logo = await readFile(join(process.cwd(), 'src/app/icon.png'));
+  const logo = await readFile(join(process.cwd(), 'public/logo.png'));
   const logoSource = `data:image/png;base64,${logo.toString('base64')}`;
 
   return new ImageResponse(
@@ -28,19 +28,25 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ lan
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '80px',
-          background: 'linear-gradient(135deg, #1e1b4b 0%, #4338ca 60%, #7c3aed 100%)',
-          color: '#ffffff',
+          background: '#FFF4E8',
+          color: '#2A1608',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-          <img src={logoSource} width={88} height={88} alt="" />
-          <span style={{ fontSize: 64, fontWeight: 800 }}>{SITE_NAME}</span>
+          <img src={logoSource} width={104} height={104} alt="" />
+          <span style={{ fontSize: 76, fontWeight: 900, letterSpacing: -3 }}>zekke</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-          <span style={{ fontSize: 68, fontWeight: 800, lineHeight: 1.1 }}>{dict.hero.title}</span>
-          <span style={{ fontSize: 34, color: '#c7d2fe', lineHeight: 1.3 }}>{dict.meta.ogImageTagline}</span>
+          <div style={{ display: 'flex', flexDirection: 'column', fontSize: 104, fontWeight: 900, lineHeight: 1, letterSpacing: -4 }}>
+            <span>{dict.hero.titleLine1}</span>
+            <span style={{ color: '#C2410C' }}>{dict.hero.titleLine2}</span>
+          </div>
+          <span style={{ fontSize: 32, color: '#4A2E1A', lineHeight: 1.3, maxWidth: 900 }}>{dict.meta.ogImageTagline}</span>
         </div>
-        <span style={{ fontSize: 28, color: '#a5b4fc' }}>Zekke.io</span>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <span style={{ fontSize: 28, color: '#9A3412', fontWeight: 700 }}>zekke.io</span>
+          <span style={{ width: 220, height: 14, borderRadius: 7, background: '#FF7A1A' }} />
+        </div>
       </div>
     ),
     size,

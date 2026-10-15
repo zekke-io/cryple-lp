@@ -11,7 +11,6 @@ export function middleware(request: NextRequest) {
   if (
     pathname.startsWith('/_next') ||
     pathname.includes('/api/') ||
-    pathname.startsWith('/icons') ||
     pathname.endsWith('/opengraph-image') ||
     pathname.match(/\.(png|jpg|jpeg|svg|webp|ico)$/)
   ) {

@@ -1,206 +1,285 @@
 {
   "meta": {
-    "title": "Zekke — Cofre Criptografado de Conhecimento Zero para Senhas, Seed Phrases e Arquivos",
-    "description": "Um cofre de conhecimento zero para senhas, seed phrases, notas, documentos e arquivos. Criptografado no seu navegador com chaves de uma frase que só você tem.",
-    "ogImageTagline": "Cofre criptografado de conhecimento zero para senhas, seed phrases, notas e arquivos.",
+    "title": "Zekke — Cofre Criptografado de Conhecimento Zero para Senhas, Seed Phrases e Notas",
+    "description": "Um cofre criptografado de conhecimento zero para senhas, seed phrases, notas e documentos longos. Tudo é criptografado no seu navegador, com chaves que só você tem.",
+    "ogImageTagline": "Um cofre criptografado de conhecimento zero para senhas, seed phrases, notas e documentos longos.",
+    "logoLabel": "Tatu-bola do Zekke, enrolado e fechado",
     "privacyDescription": "Como a Zekke trata os seus dados: o que a página coleta, por quê e por quanto tempo é mantido.",
     "termsDescription": "Os termos que se aplicam ao usar o site da Zekke e entrar na lista de espera.",
     "securityPolicyDescription": "Como reportar uma vulnerabilidade de segurança na Zekke e como tratamos as divulgações."
   },
   "nav": {
-    "features": "Recursos",
-    "howItWorks": "Como Funciona",
+    "stores": "O que guarda",
+    "how": "Como funciona",
     "security": "Segurança",
-    "contact": "Contato",
-    "getEarlyAccess": "Acesso Antecipado",
-    "tryTestApp": "Testar o App",
-    "language": "Idioma"
+    "pricing": "Preços",
+    "roadmap": "Roteiro",
+    "tryApp": "Testar o app",
+    "sectionsLabel": "Seções",
+    "languageLabel": "Idioma",
+    "homeLabel": "Zekke, voltar ao topo"
   },
   "hero": {
-    "title": "Armazene dados online que só você pode ler.",
-    "subtitle": "A Zekke é um cofre zero-knowledge para o que você não pode perder: senhas, seed phrases, notas, documentos e arquivos. Tudo é criptografado no seu navegador antes de sair, e as chaves são derivadas de uma frase de recuperação que só você tem.",
-    "learnMore": "Saiba Mais",
-    "vaultLabel": "Tudo em um só cofre",
-    "vaultItems": [
-      "Segredos",
-      "Notas",
-      "Documentos",
-      "Drive",
-      "Compartilhamento seguro",
-      "Senhas"
-    ],
-    "demoTitle": "O Que Os Nossos Servidores Recebem de Verdade",
-    "demoSubtitle": "A criptografia acontece no seu navegador. O que chega aqui é um blob selado e o pouco que o roteamento exige — e não existe chave do nosso lado para abrir.",
-    "demoStage1": "Criptografado no seu dispositivo — AES-256-GCM, a chave nunca é enviada",
-    "demoStage2": "Armazenado por nós: o texto cifrado, o tamanho dele e quando mudou",
-    "demoStage3": "Legível por nós: nada. Nem com ordem judicial, nem por engano"
+    "badge": "Versão de staging no ar agora",
+    "titleLine1": "Tudo seu.",
+    "titleLine2": "Só seu.",
+    "subtitle": "O Zekke é um cofre criptografado de conhecimento zero para suas senhas, seed phrases, notas e documentos longos. Tudo é criptografado no seu navegador, com chaves que só você tem.",
+    "tryApp": "Testar o app",
+    "joinWaitlist": "Entrar na lista de espera",
+    "note": "Sua frase de recuperação é a sua conta. Não há e-mail, nem senha, nem recuperação de conta de nenhum tipo.",
+    "lockedLabel": "Tatu-bola do Zekke, enrolado e fechado",
+    "openLabel": "Tatu-bola do Zekke, relaxado e aberto",
+    "lock": {
+      "tagline": "Tudo seu. Só seu.",
+      "phraseLabel": "Frase de recuperação",
+      "phrasePlaceholder": "12 ou 24 palavras",
+      "open": "Abrir"
+    },
+    "home": {
+      "greeting": "Oi! Tudo guardado.",
+      "note": "Só você vê isso aqui.",
+      "items": [
+        "Segredos",
+        "Senhas",
+        "Notas",
+        "Documentos",
+        "Arquivos"
+      ],
+      "soon": "Em breve",
+      "lock": "Fechar o Zekke"
+    }
   },
-  "features": {
-    "title": "Por que a Zekke é Diferente?",
-    "subtitle": "Todo cofre diz ser de conhecimento zero. Pós-quântico é uma linha na ficha técnica de alguém. A Zekke reúne as três ao mesmo tempo, e é a combinação — não uma delas — que ninguém mais está entregando.",
+  "trust": {
     "items": [
       {
-        "title": "Conhecimento Zero por Construção, Não por Política",
-        "badge": "Conhecimento Zero",
-        "desc": "Cada item ganha a própria chave aleatória, gerada no seu dispositivo e envelopada por uma chave derivada da sua frase de recuperação. O que chega aos nossos servidores é um blob selado e o pouco que o roteamento precisa — o tamanho dele e quando mudou. Não existe chave mestra, nem banco de recuperação, nem ferramenta de suporte que abra o seu cofre. Não porque prometemos não olhar, mas porque do nosso lado não há nada com que olhar.",
-        "imageAlt": "Um cadeado luminoso sobre um campo de dados digitais"
+        "title": "Conhecimento zero",
+        "desc": "O Zekke nunca tem uma chave capaz de descriptografar seus dados."
       },
       {
-        "title": "Você Não É o Produto",
-        "desc": "Sem anúncios, sem rastreamento, sem cookies. Nosso plano gratuito é gratuito de verdade, e você paga quando quiser mais espaço. Zero-knowledge é a arquitetura, não o marketing: as fechaduras e as chaves são feitas no seu dispositivo, e não podemos ver suas senhas, ler suas notas ou abrir seus arquivos em nenhuma circunstância.",
-        "imageAlt": "Uma mulher confiante de óculos escuros numa rua da cidade"
+        "title": "A frase é a conta",
+        "desc": "Sem e-mail, sem senha, sem recuperação de conta."
       },
       {
-        "title": "Tudo o Que Você Realmente Precisa Guardar",
-        "desc": "Segredos pequenos que destrancam todo o resto — seed phrases, dados de contas, credenciais. Notas para o que precisa de explicação. Documentos longos que sincronizam entre seus dispositivos enquanto você escreve. Arquivos criptografados vêm a seguir. Um cofre, uma frase, e todo tipo de coisa que hoje você espalha entre um app de notas, um drive e uma gaveta.",
-        "imageAlt": "Um homem trabalhando numa mesa em pé ao lado de uma janela"
+        "title": "Criptografado antes de sair",
+        "desc": "AES-256-GCM, aplicado no seu navegador."
       },
       {
-        "title": "Escreva num Dispositivo, Leia em Qualquer Outro",
-        "desc": "Documentos sincronizam enquanto você digita, criptografados o caminho inteiro. Seus dispositivos chegam ao mesmo texto sem que nossos servidores o vejam — eles guardam e repassam mudanças seladas, e não mesclam nada. Abra um navegador novo, digite sua frase, e está tudo lá.",
-        "imageAlt": "Um homem à mesa lendo no celular ao lado de um notebook aberto"
-      },
-      {
-        "title": "O Que Você Recebe no Lugar de um Reset",
-        "desc": "Consideramos deixar pessoas de confiança guardarem pedaços da sua chave e decidimos não fazer: qualquer porta construída para você é uma porta que existe. Então damos o artefato no lugar — um kit imprimível no cadastro, e palavras claras sobre a sua responsabilidade, antes de ela ser sua.",
-        "imageAlt": "Uma única chave sobre uma superfície escura"
-      },
-      {
-        "title": "A Sua Frase de Recuperação É a Conta",
-        "badge": "Autenticação BIP39",
-        "desc": "Doze ou vinte e quatro palavras comuns, geradas no seu navegador. Toda chave que a Zekke usa é derivada delas da mesma forma em todos os dispositivos — sem e-mail, sem senha. Digite a frase num navegador novo e o cofre está lá. Isso também significa que ninguém consegue devolver o seu acesso, nós inclusive: a frase é a conta, então perdê-la é perder tudo, e é por isso que exigimos que você confira a sua cópia antes de começar.",
-        "imageAlt": "Uma placa de aço para backup da frase de recuperação sobre peças com palavras"
-      },
-      {
-        "title": "Modo Paranoid — um PIN de 6 dígitos como segundo fator",
-        "desc": "Os dois modos usam um PIN de 6 dígitos para trancar o app e criptografar a cópia da sua frase naquele dispositivo. No modo Padrão ele fica local — esqueceu, entra de novo com a frase e não perde nada. No modo Paranoid o servidor também confere, então uma frase roubada sozinha não entra. Essa proteção é real e o custo dela também: um PIN esquecido encerra uma conta Paranoid, e dizemos isso na tela em que você o liga.",
-        "imageAlt": "Um olho espiando por um buraco numa parede escura"
-      },
-      {
-        "title": "Já Fora do Alcance Quântico",
-        "badge": "Pós-Quântico",
-        "desc": "Seu cofre é selado com AES-256 derivado da sua frase, e a criptografia simétrica é justamente o que sobrevive a um computador quântico — o algoritmo de Grover corta o expoente pela metade e nada além disso. O que um computador quântico realmente quebra é a criptografia de chave pública, e ela só é necessária quando duas pessoas que não compartilham segredo algum precisam concordar numa chave. Por isso a troca por trás do compartilhamento privado combina um algoritmo clássico com um pós-quântico, e o atacante tem que quebrar os dois. Está implementado, especificado e verificado contra vetores de teste fixos.",
-        "imageAlt": "Uma mulher alegre de óculos escuros fazendo o sinal de paz"
+        "title": "Sem anúncios, sem rastreamento",
+        "desc": "Nem cookies."
       }
     ]
   },
-  "roadmap": {
-    "title": "Garanta seu Acesso Antecipado",
-    "timelineTitle": "Próximos Lançamentos",
-    "subtitle": "Junte-se à nossa lista de espera hoje e garanta seu lugar nos próximos lançamentos.",
-    "alpha": {
-      "date": "Setembro de 2026",
-      "title": "Release de Staging",
-      "desc": "No ar agora: o cofre, notas criptografadas e documentos longos que sincronizam entre dispositivos, nos modos Padrão e Paranoid."
-    },
-    "beta": {
-      "date": "Dezembro de 2026",
-      "title": "O Drive",
-      "desc": "Armazenamento de arquivos criptografados — imagens e PDFs. O lugar para os documentos que realmente importam: contratos, exames médicos, passaportes, documentos. Selados no seu dispositivo exatamente como todo o resto. Depois vem o compartilhamento privado: enviar um item para uma pessoa, ainda ponta a ponta."
-    },
-    "launch": {
-      "date": "2027",
-      "title": "Lançamento em Produção",
-      "desc": "Ainda sem data. O cofre aberto para todos."
-    },
-    "discount": "Junte-se à lista de espera para ser notificado sobre o lançamento oficial. Durante o primeiro mês de lançamento, as assinaturas premium terão <strong>50% de desconto</strong>."
+  "stores": {
+    "eyebrow": "O que guarda",
+    "title": "O que você não pode perder, nem vazar.",
+    "subtitle": "Segredos, senhas, notas e documentos longos hoje. Arquivos criptografados em seguida.",
+    "items": [
+      {
+        "title": "Segredos",
+        "desc": "Seed phrases, dados de contas e credenciais, cada um selado com a sua própria chave."
+      },
+      {
+        "title": "Senhas",
+        "desc": "Seus logins num cofre que o servidor não consegue abrir, restaurado em qualquer navegador com a sua frase."
+      },
+      {
+        "title": "Notas",
+        "desc": "Ideias rápidas e dados privados, criptografados de ponta a ponta como todo o resto."
+      },
+      {
+        "title": "Documentos longos",
+        "desc": "Escreva num editor de texto rico e sincronize entre seus dispositivos enquanto digita, criptografado de ponta a ponta. O servidor guarda e repassa mudanças seladas e não mescla nada."
+      }
+    ],
+    "soon": {
+      "badge": "Previsto para dezembro de 2026",
+      "title": "Arquivos criptografados e compartilhamento privado",
+      "desc": "Armazenamento criptografado para imagens e PDFs, e compartilhamento privado de um item com uma pessoa."
+    }
   },
-  "howItWorks": {
-    "title": "Como Funciona",
-    "subtitle": "Você configura uma vez, em alguns minutos, e depois disso ele só guarda as coisas.",
+  "how": {
+    "eyebrow": "Como funciona",
+    "title": "Seu dispositivo faz a selagem. O servidor só guarda o resultado.",
     "steps": [
       {
-        "title": "1. Gere Sua Seed Phrase",
-        "desc": "Abra a Zekke e o seu navegador gera doze ou vinte e quatro palavras, e então deriva toda a sua árvore de chaves localmente. Nada é enviado a lugar nenhum. Anote a frase no papel e escolha o modo Padrão ou Paranoico.",
-        "imageAlt": "Ilustração da geração de uma frase de recuperação"
+        "title": "Seu navegador cria uma frase",
+        "desc": "Ele gera no seu dispositivo uma frase de recuperação BIP39 de 12 ou 24 palavras. O endereço da sua conta e as chaves raiz são derivados dela localmente. Nada é enviado."
       },
       {
-        "title": "2. Preencha o Cofre",
-        "desc": "Guarde as coisas pequenas que destravam todo o resto: seed phrases, dados de contas, credenciais. Escreva notas: as cartas e instruções que explicam tudo isso. Escreva documentos longos que sincronizam entre os seus dispositivos. Tudo criptografado aqui, antes de sair.",
-        "imageAlt": "Ilustração de um cofre protegido"
+        "title": "Cada item tem a sua chave",
+        "desc": "Cada chave de item é aleatória e gerada no seu dispositivo. Ela é embrulhada sob uma chave aleatória para aquele tipo de dado, e essa chave é embrulhada para a sua frase e para cada dispositivo que a tem."
       },
       {
-        "title": "3. Abra em Qualquer Lugar",
-        "desc": "A sua frase é a conta, então um navegador novo não precisa de mais nada. Digite e o cofre está lá, decriptado localmente. Defina um PIN de 6 dígitos em cada dispositivo para voltar com seis dígitos em vez de doze palavras.",
-        "imageAlt": "Ilustração de abrir o cofre em qualquer dispositivo"
+        "title": "O servidor recebe um blob selado",
+        "desc": "Mais o pouco que o roteamento precisa: o tamanho e quando mudou. Sem chave mestra, sem banco de recuperação, sem ferramenta de suporte capaz de abrir um cofre."
       },
       {
-        "title": "4. Guarde a Frase num Lugar de Verdade",
-        "desc": "Imprima o kit que entregamos no cadastro, ou escreva as palavras no papel, e guarde onde você guardaria um passaporte. Esta é a única parte que não podemos fazer por você, e a que mais importa: ninguém — nós inclusive — consegue emitir outra.",
-        "imageAlt": "Ilustração de guardar a frase de recuperação em local seguro"
+        "title": "Digite a frase em qualquer lugar",
+        "desc": "Digitar a frase num navegador novo o registra como dispositivo e restaura o cofre inteiro. Cada dispositivo tem as suas próprias chaves e um PIN de 6 dígitos que trava o app."
       }
-    ]
+    ],
+    "device": {
+      "title": "No seu dispositivo",
+      "items": [
+        "Frase de recuperação: a única chave raiz",
+        "A frase em si nunca é guardada num dispositivo",
+        "Uma chave aleatória por item, embrulhada para a frase e para cada um dos seus dispositivos",
+        "A criptografia acontece aqui, antes de enviar qualquer coisa"
+      ]
+    },
+    "blobLabel": [
+      "blob",
+      "selado"
+    ],
+    "server": {
+      "title": "No servidor do Zekke",
+      "rows": [
+        {
+          "label": "Vê:",
+          "text": "um blob selado, o tamanho, quando mudou, quantos dispositivos você tem e com quem você está conectado"
+        },
+        {
+          "label": "Não tem:",
+          "text": "uma chave mestra nem um banco de recuperação"
+        },
+        {
+          "label": "Não consegue:",
+          "text": "abrir um cofre, nem com uma ferramenta de suporte"
+        }
+      ]
+    }
   },
   "security": {
-    "title": "Segurança Que Você Pode Verificar",
-    "subtitle": "Zero-knowledge por construção, não por política: o servidor nunca recebe nada legível, porque as chaves são feitas no seu dispositivo e nunca são enviadas.",
-    "bullets": [
-      "Tudo é criptografado no seu navegador; o servidor recebe dados selados e os armazena",
-      "Zero-knowledge por construção — não existe chave do nosso lado para decriptar",
-      "Prova de posse por assinatura ECDSA P-256 sobre um desafio novo, nunca um segredo transmitido",
-      "Seus dados em repouso usam AES-256-GCM — simétrico, e já fora do alcance de um computador quântico",
-      "PQXDH híbrido para criptografar para outra conta: X25519 + ML-KEM-768 combinados, para que um ataque clássico e um quântico tenham de dar certo juntos",
-      "Modo Paranoid: um segundo fator de verdade, exigindo a sua frase de recuperação e o seu PIN juntos",
-      "A sua frase de recuperação, o seu PIN e o seu texto puro nunca saem do seu dispositivo",
-      "Nenhuma recuperação de conta, por design — não há caminho de volta que possam nos obrigar a usar"
-    ],
-    "techSpecsTitle": "Especificações Técnicas",
-    "specs": [
+    "eyebrow": "Modelo de segurança",
+    "title": "Conhecimento zero por construção, não por política.",
+    "subtitle": "O Zekke não consegue ler seus dados, nem sob ordem judicial, porque nunca tem uma chave capaz de descriptografá-los.",
+    "standard": {
+      "title": "Modo padrão",
+      "badge": "O servidor nunca vê o PIN",
+      "desc": "O PIN destrava as suas chaves naquele dispositivo. O servidor limita as tentativas sem nunca ver o PIN, e depois de erros demais aquele dispositivo é registrado de novo com a sua frase."
+    },
+    "paranoid": {
+      "title": "Modo paranoico",
+      "badge": "Dois fatores",
+      "desc": "Tudo o que a sua frase assina também exige um PIN da conta, então uma frase roubada não registra nenhum dispositivo. O servidor limita as tentativas sem nunca ver o PIN. Esquecer o PIN da conta encerra a conta."
+    },
+    "lose": {
+      "title": "Perdeu a frase, perdeu o cofre.",
+      "desc": "Ninguém, nem o Zekke, pode restaurar o acesso. Você confere a sua cópia da frase no cadastro e recebe um kit de recuperação imprimível. Um dispositivo perdido é diferente: remova-o a partir de outro dispositivo ou com a sua frase, e as chaves que ele tinha são trocadas."
+    },
+    "postQuantum": {
+      "title": "Pós-quântico onde importa",
+      "desc": "Os dados em repouso usam AES-256-GCM, que resiste a ataques quânticos. O compartilhamento entre contas usa PQXDH, um híbrido de X25519 e ML-KEM-768, então um atacante precisa quebrar um algoritmo clássico e um pós-quântico."
+    }
+  },
+  "specs": {
+    "eyebrow": "Especificações técnicas",
+    "title": "A criptografia, com nome.",
+    "subtitle": "Cada algoritmo e parâmetro, para você conferir as afirmações em vez de confiar nelas.",
+    "rows": [
       {
-        "label": "Criptografia Simétrica",
+        "label": "Criptografia simétrica",
         "value": "AES-256-GCM"
       },
       {
-        "label": "Troca de Chaves Clássica",
+        "label": "Troca de chaves clássica",
         "value": "X25519 (ECDH)"
       },
       {
-        "label": "KEM Pós-Quântica",
-        "value": "ML-KEM-768 (FIPS 203) — para compartilhamento"
+        "label": "KEM pós-quântico",
+        "value": "ML-KEM-768 (FIPS 203), para compartilhamento"
       },
       {
-        "label": "Protocolo Híbrido",
-        "value": "PQXDH (X25519 + ML-KEM-768) — para compartilhamento"
+        "label": "Protocolo híbrido",
+        "value": "PQXDH (X25519 + ML-KEM-768), para compartilhamento"
       },
       {
-        "label": "Derivação de Chaves",
-        "value": "BIP39 → SLIP-0010 P-256"
+        "label": "Derivação de chaves",
+        "value": "BIP39 (PBKDF2-HMAC-SHA512, 2048 iterações) → SLIP-0010 P-256"
       },
       {
         "label": "Autenticação",
-        "value": "Assinaturas ECDSA P-256"
+        "value": "Assinatura ECDSA P-256 sobre um desafio novo, com carimbo de tempo e de uso único; nenhum segredo é transmitido"
       },
       {
-        "label": "Alongamento do PIN",
-        "value": "PBKDF2-SHA256 (600k) no cliente"
+        "label": "Limitação do PIN",
+        "value": "OPRF (RFC 9497, ristretto255-SHA512): o servidor conta as tentativas e nunca vê o PIN"
       },
       {
-        "label": "Hash no Servidor",
-        "value": "Argon2id (64 MiB, t=3, p=4)"
+        "label": "Derivação do PIN",
+        "value": "Argon2id (64 MiB, t=3, p=1), no cliente"
       }
     ]
   },
+  "pricing": {
+    "eyebrow": "Preços",
+    "title": "Comece de graça. Os planos pagos aumentam o armazenamento.",
+    "bullets": [
+      "Um plano gratuito.",
+      "Os planos pagos aumentam o armazenamento. Os preços finais ainda não foram publicados.",
+      "Sem anúncios, sem rastreamento, sem cookies."
+    ],
+    "waitlist": {
+      "badge": "50% de desconto",
+      "title": "Entre na lista de espera",
+      "desc": "Quem está na lista de espera tem 50% de desconto nas assinaturas premium durante o primeiro mês após o lançamento.",
+      "emailLabel": "Endereço de e-mail",
+      "placeholder": "voce@exemplo.com",
+      "button": "Entrar na lista de espera",
+      "privacyBefore": "Este site coleta apenas o seu e-mail, para a lista de espera. Veja a ",
+      "privacyLink": "política de privacidade",
+      "privacyAfter": "."
+    }
+  },
+  "roadmap": {
+    "eyebrow": "Status das versões",
+    "title": "Onde o Zekke está e o que vem depois.",
+    "items": [
+      {
+        "date": "Setembro de 2026",
+        "badge": "No ar agora",
+        "title": "Versão de staging",
+        "desc": "O cofre, as notas criptografadas e os documentos sincronizados, nos modos Padrão e Paranoico.",
+        "link": "Experimente em test-app.zekke.io"
+      },
+      {
+        "date": "Dezembro de 2026",
+        "title": "Drive e compartilhamento privado",
+        "desc": "Arquivos criptografados e compartilhamento privado de um item com uma pessoa."
+      },
+      {
+        "date": "2027",
+        "title": "Lançamento em produção",
+        "desc": "Ainda sem data."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Gere a sua frase. Guarde com cuidado. Essa é a conta inteira.",
+    "desc": "A versão de staging já está no ar: o cofre, as notas criptografadas e os documentos sincronizados, nos modos Padrão e Paranoico.",
+    "tryApp": "Testar o app",
+    "joinWaitlist": "Entrar na lista de espera"
+  },
   "footer": {
-    "tagline": "Suas chaves, seus dados. De mais ninguém.",
+    "description": "Um cofre criptografado de conhecimento zero para senhas, seed phrases, notas e documentos longos. Criado pela Zekke LLC.",
     "product": "Produto",
-    "joinWaitlist": "Acesso Antecipado",
-    "features": "Recursos",
-    "security": "Segurança",
-    "howItWorks": "Como Funciona",
-    "contact": "Contato",
-    "emailUs": "Envie-nos um e-mail",
+    "tryApp": "Testar o app",
+    "how": "Como funciona",
+    "security": "Modelo de segurança",
+    "roadmap": "Status das versões",
     "legal": "Legal",
-    "privacyPolicy": "Política de Privacidade",
-    "termsOfService": "Termos de Serviço",
-    "securityPolicy": "Política de Segurança",
-    "copyright": "© 2026 Zekke™. Todos os direitos reservados. Criado para a privacidade. Zekke LLC, 30 N Gould St Ste R, Sheridan, WY 82801, EUA"
+    "securityPolicy": "Política de segurança",
+    "privacyPolicy": "Política de privacidade",
+    "termsOfService": "Termos de serviço",
+    "language": "Idioma",
+    "copyright": "© 2026 Zekke LLC · 30 N Gould St Ste R, Sheridan, WY 82801, EUA",
+    "contact": "Contato:"
   },
   "form": {
-    "agreeTo": "Eu concordo com os ",
-    "termsOfService": "Termos de Serviço",
-    "placeholder": "Digite seu e-mail",
     "sending": "Enviando...",
-    "successMessage": "Você está na lista! Fique de olho na sua caixa de entrada."
+    "successMessage": "Você está na lista! Fique de olho na sua caixa de entrada.",
+    "alreadyOnList": "Você já está na lista!",
+    "error": "Algo deu errado. Tente novamente."
   },
   "terms": {
     "title": "Termos de Serviço",

@@ -1,93 +1,74 @@
 # Zekke landing page
 
-The marketing site for the Zekke app. Next.js 16 App Router, no CSS framework — all styling lives in `src/app/globals.css` as plain CSS with hardcoded hex values.
+The marketing site for the Zekke app. Next.js 16 App Router, no CSS framework — all styling lives in `src/app/globals.css` as plain CSS on top of the brand tokens declared in `:root`.
 
 Product overview: [application-overview.md](../api-general/docs/application-overview.md)
 
+**Every factual claim on the page has to agree with [`../api-general/docs`](../api-general/docs).** The security text was reviewed against it once; when the product changes, the page changes with it. Things that are easy to get wrong: the phrase is never stored on a device, each device has its own random keys, the PIN goes through an OPRF and Argon2id (not PBKDF2), and the server also sees device counts and connections.
+
+## Design
+
+The design is the `Zekke Landing` artifact, built on the `Zekke Brand` artifact. The page follows them section by section: header, hero with two phone mocks, trust strip, what it stores, how it works, security model, technical specifications, pricing with the waitlist, release status, closing call to action, footer.
+
+### Brand rules the code relies on
+
+- **Palette** (`:root` in `globals.css`): Zekke orange `#FF7A1A` for the brand, buttons and icon; hull `#C2410C` for orange text and links on cream; amber `#FFB066` for the armadillo's bands and highlights; violet `#6B4CF0` only for details (the Paranoid panel and the focus ring); cream `#FFF4E8` ground; peach `#FFE3C7` for cards and soft areas; ink `#2A1608` for text; night `#1C1428` for the security band. Do not swap the orange for blue or violet.
+- **Type:** Nunito, loaded with `next/font` in `src/app/[lang]/layout.tsx` (weights 500–900). The wordmark is lowercase `zekke`, Nunito Black, −4.5% tracking; in running text the name is `Zekke`.
+- **The mascot** is a rolled-up armadillo: closed means protected, open means at home. `ArmadilloSprite` defines the artwork once as SVG symbols and `Armadillo` places one with `<use>`. No padlock, shield, key or eye anywhere.
+- **Icons** are inline stroke SVG in `Icon`, drawn in `currentColor` so a parent sets the colour.
+- **App icon.** `src/app/icon.svg` is the favicon, `src/app/apple-icon.png` the touch icon (square, the platform applies its own mask) and `public/logo.png` the 512 px logo used by the structured data and the share image.
+
+### The phone mocks are decorative
+
+The hero shows two phones, one locked with a "Recovery phrase" field and one unlocked. They are plain `div`s, hidden from assistive technology, not an `<input>` and a `<button>`: a real field labelled "Recovery phrase" on a marketing page invites people to type their phrase into it. Keep it that way.
+
 ## Localisation
 
-Three locales: `en` (default), `pt-br`, `es`. Copy lives in `src/dictionaries/<locale>.json` and is loaded by `src/lib/dictionaries.ts`.
+Three locales: `en` (default), `pt-br`, `es`. Copy lives in `src/dictionaries/<locale>.json` and is loaded by `src/lib/dictionaries.ts`, which types every dictionary as `typeof en.json`: a key missing from `es.json` or `pt-br.json` fails `tsc`.
 
 `src/middleware.ts` rewrites `/` to `/en` internally, so the default locale never appears in the URL, and redirects `/en/*` back to `/*` with a permanent 308. Routes live under `src/app/[lang]/`. Internal links go through `localizedPath(lang, path)` from `src/lib/site.ts`, never a hand-built `/${lang}/…`, so English links never hit that redirect.
 
-**Every user-facing string belongs in all three dictionaries.** Adding a string to `en.json` alone silently ships English to Portuguese and Spanish visitors.
+**Every user-facing string belongs in all three dictionaries.** The brand tagline is "Tudo seu. Só seu." in Portuguese and "Todo tuyo. Solo tuyo." in Spanish.
 
-Spanish and Portuguese run roughly 20-30% longer than English. The header is the tightest layout on the site — see below.
+The language switch is three real links (`EN`, `ES`, `PT`) in the header and the three language names in the footer, each with `hreflang`, so crawlers can follow them. The current language carries `aria-current="page"`.
 
-## Icons
+Spanish and Portuguese run roughly 20–30% longer than English. The header wraps (logo, then nav, then actions) rather than truncating; check `/es` first when a nav label or button gets longer.
 
-### Feature icons
+## Structure
 
-Six marks in `public/icons/`, drawn for the vault showcase in the hero:
+| Path | What it is |
+| ---- | ---------- |
+| `src/app/[lang]/page.tsx` | The home page: every section except the header and the footer |
+| `src/components/SiteHeader.tsx`, `SiteFooter.tsx` | Header with section links, language links and "Try the app"; footer with product, legal and language columns |
+| `src/components/EmailForm.tsx` | The waitlist form (client component), posting to `/api/waitlist` |
+| `src/components/LegalPage.tsx` | The shared layout of the privacy, terms and security policy pages |
+| `src/components/Armadillo.tsx`, `ArmadilloSprite.tsx`, `Icon.tsx` | Mascot and icons |
+| `src/lib/site.ts` | Site URL, locales, `localizedPath`, `pageMetadata` |
+| `src/lib/structured-data.ts` | The JSON-LD graph of the home page |
 
-| File                   | Feature                                          |
-| ---------------------- | ------------------------------------------------ |
-| `secrets.svg`          | Secrets — a key                                  |
-| `notes.svg`            | Notes — one page, folded corner                  |
-| `documents.svg`        | Documents — two stacked pages                    |
-| `drive.svg`            | Drive — a cloud                                  |
-| `safe-sharing.svg`     | Safe sharing — a padlock bridging two nodes      |
-| `password-manager.svg` | Password manager — a card holding a key and dots |
+### Waitlist
 
-Rules for anything added to this set:
-
-- 64×64 `viewBox`, stroke width 2.5, `stroke-linecap`/`stroke-linejoin` round
-- `#4f46e5` for structure, `#e0e7ff` for fill mass, `#8b5cf6` for exactly one detail, `#ffffff` for negative space
-- Colours are baked in. They read on white, on `#f9fafb` and on the `#e0e7ff` card, but **not** on the dark gradient — the indigo fill goes muddy. A dark variant needs a second file: fill `rgba(255,255,255,.14)`, strokes `#c7d2fe` and `#a5b4fc`. CSS cannot reach inside an `<img>`.
-- Four of the six describe stored things, so each takes a distinct silhouette rather than a variation on a page. A seventh icon has to respect that.
-
-### Filled variant
-
-`public/icons/filled/` holds the same six marks with the outlines dropped and the bodies filled with a violet gradient at 135°, detail knocked out in white.
-
-The ramp is `#4338ca → #a78bfa` (Indigo 700 → Violet 400), **not** the site's Action gradient. The Action gradient (`#6366f1 → #8b5cf6`) has no lightness step — 67% to 66% — so at icon size it reads as flat colour. A gradient is legible through change in value, not hue; this ramp steps 51% to 76% and reads at 52px.
-
-Unlike the outline set it carries its own contrast, so one file works on white, on the Indigo 100 card and on the dark gradient. It also holds better below 32px, where the outline set's 2.5 stroke starts closing its own counters. Use outline where a text label carries the meaning, filled where the icon has to read at a glance.
-
-The gradient is mapped to the artwork's bounds (`x1=8 y1=8 x2=56 y2=56`, `userSpaceOnUse`), not to the full 64×64 canvas. Mapped to the canvas, a shape that does not reach the corners samples only the middle of the ramp and looks flat.
-
-Gradient ids are namespaced per icon (`g-secrets`, `g-drive`, …). SVG gradient ids are global once inlined into a page, so identical ids across files would make every icon adopt the first one's gradient — keep the prefix if you add a seventh.
-
-Caveat: the gradient's darker stop is 3.3:1 against `#1f2937`, fine for a decorative icon beside a label but not as the sole content of a control on a dark surface.
-
-### Usage
-
-Decorative icons take an empty `alt`, and in the hero they must load eagerly or they pop in after paint:
-
-```tsx
-<Image src="/icons/drive.svg" alt="" width={52} height={52} loading="eager" />
-<Image src="/icons/filled/drive.svg" alt="" width={52} height={52} loading="eager" />
-```
-
-The icon order in `vaultIcons` (`src/app/[lang]/page.tsx`) must match `hero.vaultItems` in every dictionary — they are zipped by index.
-
-### Illustrations
-
-`anywhere.svg`, `bitcoin.svg`, `generate.svg` and `secure.svg` are unDraw scenes ([undraw.co](https://undraw.co)) recoloured to `#6366f1`, used in the How It Works steps. They are illustrations, not icons, and do not follow the rules above.
-
-## Layout notes
-
-- **Header.** Fixed, and the tightest layout on the site: logo + four nav links + language select + two CTAs, in three languages. Spanish is the worst case. It fits on one row above 1150px; below that `.nav-links` wraps to its own centred row and `scroll-padding-top` rises to compensate. If you lengthen a nav label or a CTA, check `/es` first.
-- **Anchor offsets.** `html { scroll-padding-top }` keeps anchored sections clear of the fixed header, and the two scroll handlers (`GetAppButton`, `EarlyAccessButton`) use `block: 'start'`, not `'center'` — centring a tall section puts its heading above the fold.
-- **Feature badges.** A feature item with a `badge` in the dictionaries gets a pill above its title (`.feature-badge`). Leave the field out and nothing renders.
-- **Footer.** Group titles are `<p class="footer-section-title">`, not headings, so the page outline stays `h1` → `h2` → `h3`. Up to 768px the brand block takes a full row and Product, Contact and Legal sit side by side in three columns; above that the grid falls back to `auto-fit` columns of at least 250px. Language links are not repeated in the footer: the header select changes language and the `hreflang` alternates tell crawlers about the other versions.
-- **Hero.** `#f9fafb` ground with two blurred brand-coloured ellipses bleeding in from the top corners, and a hairline bottom border separating it from the white features section.
+`EmailForm` posts the address to `src/app/api/waitlist/route.ts`, which adds it to the Loops audience with `LOOPS_API_KEY`. A `409` (already on the list) is shown as success with its own message. Without the key the route answers success and stores nothing, which is meant for local development only: in production a missing key loses every signup silently. The form has no terms checkbox; the privacy notice under it says what is collected.
 
 ## SEO and metadata
 
-`src/lib/site.ts` holds the site URL (`https://Zekke.io`), the locale list and the helpers every page uses to build its metadata. `pageMetadata(lang, path, title, description)` returns the title, description, canonical URL, `hreflang` alternates, Open Graph and Twitter card for one page. Change the domain there and nowhere else.
+`src/lib/site.ts` holds the site URL (`https://zekke.io`), the locale list and the helpers every page uses to build its metadata. `pageMetadata(lang, path, title, description)` returns the title, description, canonical URL, `hreflang` alternates, Open Graph and Twitter card for one page. Change the domain there and nowhere else.
 
 - **Titles and descriptions** come from the `meta` block of each dictionary. `[lang]/layout.tsx` sets the default title and the `%s | Zekke` template; the home page opts out of the template with an absolute title, and the legal pages use their own `title` plus a `meta.*Description`. Keep descriptions under ~160 characters, or search engines truncate them.
 - **Language alternates.** Each page lists all three locales plus `x-default` (English). The hreflang for `pt-br` is `pt-BR`, the BCP 47 form; `languageTag` does that mapping, and `<html lang>` uses it too.
 - **`robots.ts` / `sitemap.ts`** in `src/app/` generate `/robots.txt` and `/sitemap.xml`. The sitemap is the `pages` list × the three locales, each entry carrying its alternates. A new public page has to be added to that list.
-- **Open Graph image.** `[lang]/opengraph-image.tsx` renders a 1200×630 PNG per locale at build time from `hero.title` and `meta.ogImageTagline`. The middleware lets `/en/opengraph-image` through without its usual `/en` → `/` redirect, because Next.js puts that path in the English `og:image` tag.
-- **Structured data.** The home page emits one JSON-LD `@graph` with `Organization`, `WebSite` and `WebApplication`. The address, the contact email and the free-tier `Offer` are facts about the company: update them there when they change.
+- **Open Graph image.** `[lang]/opengraph-image.tsx` renders a 1200×630 PNG per locale at build time from `hero.titleLine1`, `hero.titleLine2` and `meta.ogImageTagline`, in the brand colours, with `public/logo.png`. The middleware lets `/en/opengraph-image` through without its usual `/en` → `/` redirect, because Next.js puts that path in the English `og:image` tag.
+- **Structured data.** The home page emits one JSON-LD `@graph` with `Organization`, `WebSite` and `WebApplication`. The address, the contact email and the free-tier `Offer` are facts about the company: update them in `structured-data.ts` when they change.
 - **`public/llms.txt`** is a plain-Markdown summary of Zekke for AI crawlers and assistants ([llmstxt.org](https://llmstxt.org)): what it stores, the security model, the specs, pricing, release status and the key URLs. It repeats facts from the dictionaries by hand, so a change to the roadmap, the specs or the pricing on the page has to be made there too. It is English only.
-- **Alt text** for the feature photos and How It Works illustrations is in the dictionaries (`features.items[].imageAlt`, `howItWorks.steps[].imageAlt`). It describes the picture, not the feature. Swapping a photo means rewriting its alt in all three languages.
+- **Headings.** One `h1` (the hero), `h2` per section, `h3` for cards, steps and milestones. Footer column titles are paragraphs.
 
-## Feature flags
+## Layout notes
 
-`src/app/[lang]/page.tsx` has two module-level booleans. `showEmailSubscription` gates the waitlist section, the roadmap copy and the Get Early Access buttons in both the header and the hero at once. `showRoadmapTimeline` gates the timeline.
+- **Desktop wraps, mobile is its own layout.** Above 640px sections wrap their columns instead of switching on breakpoints: cards, steps, the device/server diagram and the pricing split all use `flex: 1 1 <basis>`. At 640px and below the layout follows the two mobile boards of the `Zekke Landing` artifact (`Landing page, mobile 1 of 2` and `2 of 2`, drawn at 390px): everything becomes one column with 20px side padding, buttons are full width, the specs table stacks label over value, and the header splits into two rows, with the section links as a horizontal strip (no scrollbar) under the logo, language links and "Try the app". A second query at 380px tightens the header buttons so the longest labels ("Probar la app", "Testar o app") still fit on one row at 360px; at 320px the actions wrap under the logo.
+- **Mobile touch targets.** Nav links, footer links and the milestone link keep 44px-ish tap areas through vertical padding, not font size.
+- **Phone mocks on mobile.** Only the locked phone shows; the unlocked one is hidden under 640px. The device/server diagram swaps its horizontal arrow for a vertical one (`.diagram-arrow-horizontal` / `.diagram-arrow-vertical`).
+- **Anchors.** `html { scroll-behavior: smooth }` (off under `prefers-reduced-motion`) handles the section links; the header is not fixed, so no scroll offset is needed.
+- **Decorative vs. informative.** The phones are one `role="img"` with a label; the closing mascot is a labelled image; the logo mark next to the wordmark is hidden from assistive technology because the link already has a label.
 
 ## Development
 

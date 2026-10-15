@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
-export const SITE_URL = "https://Zekke.io";
+export const SITE_URL = "https://zekke.io";
 export const SITE_NAME = "Zekke";
-export const CONTACT_EMAIL = "contact@Zekke.io";
-export const TEST_APP_URL = "https://test-app.Zekke.io";
+export const CONTACT_EMAIL = "contact@zekke.io";
+export const TEST_APP_URL = "https://test-app.zekke.io";
 
 export const locales = ["en", "es", "pt-br"] as const;
 export const defaultLocale = "en";
@@ -18,6 +18,12 @@ const openGraphLocales: Record<string, string> = {
   en: "en_US",
   es: "es_ES",
   "pt-br": "pt_BR",
+};
+
+export const localeLabels: Record<string, { short: string; name: string }> = {
+  en: { short: "EN", name: "English" },
+  es: { short: "ES", name: "Español" },
+  "pt-br": { short: "PT", name: "Português (Brasil)" },
 };
 
 export const languageTag = (lang: string) =>

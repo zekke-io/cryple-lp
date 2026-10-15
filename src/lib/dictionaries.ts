@@ -1,9 +1,12 @@
 import 'server-only';
+import type enDictionary from '../dictionaries/en.json';
 
-const dictionaries: Record<string, () => Promise<any>> = {
+export type Dictionary = typeof enDictionary;
+
+const dictionaries: Record<string, () => Promise<Dictionary>> = {
   'en': () => import('../dictionaries/en.json').then((module) => module.default),
-  'pt-br': () => import('../dictionaries/pt-br.json').then((module) => module.default),
-  'es': () => import('../dictionaries/es.json').then((module) => module.default),
+  'pt-br': () => import('../dictionaries/pt-br.json').then((module): Dictionary => module.default),
+  'es': () => import('../dictionaries/es.json').then((module): Dictionary => module.default),
 };
 
 export const getDictionary = async (locale: string) => {

@@ -1,0 +1,64 @@
+import { CONTACT_EMAIL, SITE_NAME, SITE_URL, languageTag, localizedUrl } from './site';
+
+export const structuredData = (lang: string, description: string) => ({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      legalName: 'Zekke LLC',
+      url: SITE_URL,
+      logo: `${SITE_URL}/logo.png`,
+      email: CONTACT_EMAIL,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '30 N Gould St Ste R',
+        addressLocality: 'Sheridan',
+        addressRegion: 'WY',
+        postalCode: '82801',
+        addressCountry: 'US',
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        email: CONTACT_EMAIL,
+        contactType: 'customer support',
+        availableLanguage: ['English', 'Spanish', 'Portuguese'],
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      inLanguage: ['en', 'es', 'pt-BR'],
+      publisher: { '@id': `${SITE_URL}/#organization` },
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': `${SITE_URL}/#application`,
+      name: SITE_NAME,
+      url: localizedUrl(lang),
+      description,
+      inLanguage: languageTag(lang),
+      applicationCategory: 'SecurityApplication',
+      operatingSystem: 'Web browser',
+      browserRequirements: 'Requires a modern browser with the Web Crypto API',
+      featureList: [
+        'Zero-knowledge, client-side encryption',
+        'AES-256-GCM encryption at rest',
+        'BIP39 recovery phrase as the account',
+        'Post-quantum hybrid key exchange (X25519 + ML-KEM-768) for sharing',
+        'Paranoid mode: recovery phrase and account PIN as two factors',
+        'Encrypted notes and documents synced across devices',
+      ],
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+        description: 'Free tier',
+      },
+      publisher: { '@id': `${SITE_URL}/#organization` },
+    },
+  ],
+});

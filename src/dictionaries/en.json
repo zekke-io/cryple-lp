@@ -1,206 +1,285 @@
 {
   "meta": {
-    "title": "Zekke — Zero-Knowledge Encrypted Vault for Passwords, Seed Phrases and Files",
-    "description": "A zero-knowledge vault for passwords, seed phrases, notes, documents and files. Encrypted in your browser with keys from a recovery phrase only you hold.",
-    "ogImageTagline": "Zero-knowledge encrypted vault for passwords, seed phrases, notes and files.",
+    "title": "Zekke — Zero-Knowledge Encrypted Vault for Passwords, Seed Phrases and Notes",
+    "description": "A zero-knowledge encrypted vault for passwords, seed phrases, notes and long documents. Everything is encrypted in your browser, with keys only you hold.",
+    "ogImageTagline": "A zero-knowledge encrypted vault for passwords, seed phrases, notes and long documents.",
+    "logoLabel": "Zekke armadillo, rolled up and locked",
     "privacyDescription": "How Zekke handles your data: what the landing page collects, why, and how long it is kept.",
     "termsDescription": "The terms that apply when you use the Zekke website and join the early access waitlist.",
     "securityPolicyDescription": "How to report a security vulnerability in Zekke, and how we handle disclosures."
   },
   "nav": {
-    "features": "Features",
-    "howItWorks": "How It Works",
+    "stores": "What it stores",
+    "how": "How it works",
     "security": "Security",
-    "contact": "Contact",
-    "getEarlyAccess": "Get Early Access",
-    "tryTestApp": "Try the App",
-    "language": "Language"
+    "pricing": "Pricing",
+    "roadmap": "Roadmap",
+    "tryApp": "Try the app",
+    "sectionsLabel": "Sections",
+    "languageLabel": "Language",
+    "homeLabel": "Zekke, back to top"
   },
   "hero": {
-    "title": "Store data online that only you can read.",
-    "subtitle": "Zekke is a zero-knowledge vault for the things you cannot afford to lose: passwords, seed phrases, notes, documents and files. Everything is encrypted in your browser before it is sent, and the keys are derived from a recovery phrase only you hold.",
-    "learnMore": "Learn More",
-    "vaultLabel": "Everything in one vault",
-    "vaultItems": [
-      "Secrets",
-      "Notes",
-      "Documents",
-      "Drive",
-      "Safe sharing",
-      "Passwords"
-    ],
-    "demoTitle": "What Our Servers Actually Receive",
-    "demoSubtitle": "Encryption happens in your browser. What arrives here is a sealed blob and the little that routing it requires — and there is no key on our side to open it with.",
-    "demoStage1": "Encrypted on your device — AES-256-GCM, key never sent",
-    "demoStage2": "Stored by us: ciphertext, its size, and when it changed",
-    "demoStage3": "Readable by us: nothing. Not with a warrant, not by mistake"
+    "badge": "Staging release live now",
+    "titleLine1": "All yours.",
+    "titleLine2": "Only yours.",
+    "subtitle": "Zekke is a zero-knowledge encrypted vault for your passwords, seed phrases, notes and long documents. Everything is encrypted in your browser, with keys only you hold.",
+    "tryApp": "Try the app",
+    "joinWaitlist": "Join the waitlist",
+    "note": "Your recovery phrase is your account. There is no email, no password, and no account recovery of any kind.",
+    "lockedLabel": "Zekke armadillo, rolled up and locked",
+    "openLabel": "Zekke armadillo, relaxed and open",
+    "lock": {
+      "tagline": "All yours. Only yours.",
+      "phraseLabel": "Recovery phrase",
+      "phrasePlaceholder": "12 or 24 words",
+      "open": "Open"
+    },
+    "home": {
+      "greeting": "Hi! All stored.",
+      "note": "Only you can see this.",
+      "items": [
+        "Secrets",
+        "Passwords",
+        "Notes",
+        "Documents",
+        "Files"
+      ],
+      "soon": "Soon",
+      "lock": "Lock Zekke"
+    }
   },
-  "features": {
-    "title": "Why is Zekke Different?",
-    "subtitle": "Every vault claims zero-knowledge. Post-quantum is a line on someone's spec sheet. Zekke is all three at once, and it is the combination — not any one of them — that nobody else is shipping.",
+  "trust": {
     "items": [
       {
-        "title": "Zero-Knowledge by Construction, Not by Policy",
-        "badge": "Zero-Knowledge",
-        "desc": "Every item gets its own random key, generated on your device and wrapped under a key derived from your recovery phrase. What reaches our servers is a sealed blob and the little that routing needs — its size, and when it changed. There is no master key, no recovery database, no support tool that opens your vault. Not because we promise not to look, but because there is nothing on our side to look with.",
-        "imageAlt": "A glowing padlock over a field of digital data"
+        "title": "Zero-knowledge",
+        "desc": "Zekke never holds a key that could decrypt your data."
       },
       {
-        "title": "You Are Not The Product",
-        "desc": "No ads, no tracking, no cookies. Our free tier is genuinely free, and you pay when you want more room. Zero-knowledge is the architecture, not the marketing: the locks and the keys are made on your device, and we cannot see your passwords, read your notes, or open your files under any circumstances.",
-        "imageAlt": "A confident woman in sunglasses on a city street"
+        "title": "The phrase is the account",
+        "desc": "No email, no password, no account recovery."
       },
       {
-        "title": "Everything You Actually Need to Keep",
-        "desc": "Small secrets that unlock everything else — seed phrases, account details, credentials. Notes for the things that need explaining. Long-form documents that sync across your devices as you write. Encrypted files are next. One vault, one phrase, every kind of thing you would otherwise scatter across a notes app, a drive and a drawer.",
-        "imageAlt": "A man working at a standing desk by a window"
+        "title": "Encrypted before it leaves",
+        "desc": "AES-256-GCM, applied in your browser."
       },
       {
-        "title": "Write on One Device, Read on Any Other",
-        "desc": "Documents sync as you type, encrypted the whole way. Your devices agree on the text without our servers ever seeing it — they store and forward sealed changes and merge nothing. Open a new browser, type your phrase, and everything is simply there.",
-        "imageAlt": "A man at his desk reading on his phone next to an open laptop"
-      },
-      {
-        "title": "What You Get Instead of a Reset",
-        "desc": "We considered letting trusted contacts hold pieces of your key and decided against it: any door built for you is a door that exists. So we give you the artifact instead — a printable kit at sign-up, and plain words about what you are responsible for, before you are responsible for it.",
-        "imageAlt": "A single key lying on a dark surface"
-      },
-      {
-        "title": "Your Recovery Phrase Is the Account",
-        "badge": "BIP39 Authentication",
-        "desc": "Twelve or twenty-four ordinary words, generated in your browser. Every key Zekke uses is derived from them the same way on every device — no email, no password. Type the phrase into a new browser and your vault is simply there. It also means nobody can let you back in, including us: the phrase is the account, so losing it loses everything, which is why we make you verify your copy before you begin.",
-        "imageAlt": "A steel backup plate for a recovery phrase on a pile of word tiles"
-      },
-      {
-        "title": "Paranoid Mode — a 6-Digit PIN as a Second Factor",
-        "desc": "Both modes use a 6-digit PIN to lock the app and encrypt the copy of your phrase on that device. In Standard mode it stays local — forget it and you sign back in with your phrase, losing nothing. In Paranoid mode the server checks it too, so a stolen phrase alone gets nobody in. That protection is real and so is its cost: a forgotten PIN ends a Paranoid account, and we say so on the screen where you turn it on.",
-        "imageAlt": "An eye peering through a hole in a dark wall"
-      },
-      {
-        "title": "Already Beyond Quantum Reach",
-        "badge": "Post-Quantum",
-        "desc": "Your vault is sealed with AES-256 keyed from your phrase, and symmetric encryption is precisely what survives a quantum computer — Grover's algorithm halves the exponent and nothing more. What a quantum computer does break is public-key cryptography, and that is only needed when two people who share no secret must agree on a key. So the exchange behind private sharing combines a classical algorithm with a post-quantum one, and an attacker has to break both. It is implemented, specified, and machine-checked against fixed test vectors.",
-        "imageAlt": "A cheerful woman in sunglasses making peace signs"
+        "title": "No ads, no tracking",
+        "desc": "No cookies either."
       }
     ]
   },
-  "roadmap": {
-    "title": "Secure Your Early Access",
-    "timelineTitle": "What's Live, and What's Next",
-    "subtitle": "Join our waitlist today and secure your spot in our upcoming releases.",
-    "alpha": {
-      "date": "September 2026",
-      "title": "Staging Release",
-      "desc": "Live now: the vault, encrypted notes and long-form documents that sync across devices, in both Standard and Paranoid mode."
-    },
-    "beta": {
-      "date": "December 2026",
-      "title": "The Drive",
-      "desc": "Encrypted file storage — images and PDFs. The place for the documents that actually matter: contracts, medical records, passports, IDs. Sealed on your device exactly like everything else. Private sharing follows: send one item to one person, still end-to-end."
-    },
-    "launch": {
-      "date": "2027",
-      "title": "Production Launch",
-      "desc": "No date yet. The vault opened to everyone."
-    },
-    "discount": "Join the waitlist to be notified about the official launch. During the first month of release, premium subscriptions will have a <strong>50% discount</strong>."
+  "stores": {
+    "eyebrow": "What it stores",
+    "title": "The things you cannot afford to lose, or to leak.",
+    "subtitle": "Secrets, passwords, notes and long documents today. Encrypted files next.",
+    "items": [
+      {
+        "title": "Secrets",
+        "desc": "Seed phrases, account details and credentials, each sealed with its own key."
+      },
+      {
+        "title": "Passwords",
+        "desc": "Your logins in a vault the server cannot open, restored on any browser with your phrase."
+      },
+      {
+        "title": "Notes",
+        "desc": "Quick thoughts and private details, encrypted end to end like everything else."
+      },
+      {
+        "title": "Long-form documents",
+        "desc": "Write with a rich text editor and have it sync across your devices as you type, encrypted end to end. The server stores and forwards sealed changes and merges nothing."
+      }
+    ],
+    "soon": {
+      "badge": "Planned for December 2026",
+      "title": "Encrypted files and private sharing",
+      "desc": "Encrypted storage for images and PDFs, and private sharing of one item with one person."
+    }
   },
-  "howItWorks": {
-    "title": "How It Works",
-    "subtitle": "You set it up once, in a couple of minutes, and after that it just holds things.",
+  "how": {
+    "eyebrow": "How it works",
+    "title": "Your device does the sealing. The server only holds the result.",
     "steps": [
       {
-        "title": "1. Generate Your Recovery Phrase",
-        "desc": "Open Zekke and your browser generates twelve or twenty-four words, then derives your whole key tree from them locally. Nothing is sent anywhere. Write the phrase down on paper, and choose Standard or Paranoid mode.",
-        "imageAlt": "Illustration of generating a recovery phrase"
+        "title": "Your browser makes a phrase",
+        "desc": "It generates a 12- or 24-word BIP39 recovery phrase on your device. Your account address and root keys are derived from it locally. Nothing is sent."
       },
       {
-        "title": "2. Fill the Vault",
-        "desc": "Store the small things that unlock everything else — seed phrases, account details, credentials. Write notes: the letters and instructions that explain them. Write long-form documents that sync across your devices. All of it encrypted here, before it leaves.",
-        "imageAlt": "Illustration of a secured vault"
+        "title": "Every item gets its own key",
+        "desc": "Each item key is random and generated on your device. It is wrapped under a random key for that kind of data, and that key is wrapped to your phrase and to each device that holds it."
       },
       {
-        "title": "3. Open It Anywhere",
-        "desc": "Your phrase is the account, so a new browser needs nothing else. Type it in and your vault is there, decrypted locally. Set a 6-digit PIN on each device so coming back is six digits rather than twelve words.",
-        "imageAlt": "Illustration of opening the vault from any device"
+        "title": "The server gets a sealed blob",
+        "desc": "Plus the little that routing needs: its size and when it changed. No master key, no recovery database, no support tool that can open a vault."
       },
       {
-        "title": "4. Put the Phrase Somewhere Real",
-        "desc": "Print the kit we give you at sign-up, or write the words on paper, and store it where you would keep a passport. This is the one part we cannot do for you, and the one part that matters most: nobody — us included — can issue you another.",
-        "imageAlt": "Illustration of storing the recovery phrase safely"
+        "title": "Type the phrase anywhere",
+        "desc": "Typing the phrase in a new browser enrols it as a device and restores the whole vault. Each device has its own keys and a 6-digit PIN that locks the app."
       }
-    ]
+    ],
+    "device": {
+      "title": "On your device",
+      "items": [
+        "Recovery phrase: the only root key",
+        "The phrase itself is never stored on a device",
+        "One random key per item, wrapped to the phrase and to each of your devices",
+        "Encryption happens here, before anything is sent"
+      ]
+    },
+    "blobLabel": [
+      "sealed",
+      "blob"
+    ],
+    "server": {
+      "title": "On the Zekke server",
+      "rows": [
+        {
+          "label": "Sees:",
+          "text": "a sealed blob, its size, when it changed, how many devices you have, and who you are connected to"
+        },
+        {
+          "label": "Does not have:",
+          "text": "a master key or a recovery database"
+        },
+        {
+          "label": "Cannot do:",
+          "text": "open a vault, not even with a support tool"
+        }
+      ]
+    }
   },
   "security": {
-    "title": "Security You Can Verify",
-    "subtitle": "Zero-knowledge by construction, not by policy: the server never receives anything readable, because the keys are made on your device and never sent.",
-    "bullets": [
-      "Everything is encrypted in your browser; the server receives sealed data and stores it",
-      "Zero-knowledge by construction — there is no key on our side to decrypt with",
-      "Proof of ownership by ECDSA P-256 signature over a fresh challenge, never a transmitted secret",
-      "Your data at rest is AES-256-GCM — symmetric, and already beyond the reach of a quantum computer",
-      "Hybrid PQXDH for encrypting to another account: X25519 + ML-KEM-768 combined, so a classical and a quantum attack must both succeed",
-      "Paranoid Mode: a real second factor, requiring your recovery phrase and your PIN together",
-      "Your recovery phrase, your PIN and your plaintext never leave your device, ever",
-      "No account recovery of any kind, by design — there is no path back in for us to be compelled to use"
-    ],
-    "techSpecsTitle": "Technical Specifications",
-    "specs": [
+    "eyebrow": "Security model",
+    "title": "Zero-knowledge by construction, not by policy.",
+    "subtitle": "Zekke cannot read your data, even under legal compulsion, because it never holds a key that could decrypt it.",
+    "standard": {
+      "title": "Standard mode",
+      "badge": "The server never sees the PIN",
+      "desc": "The PIN unlocks your keys on that device. The server limits the guesses without ever seeing it, and after too many wrong tries that device is enrolled again with your phrase."
+    },
+    "paranoid": {
+      "title": "Paranoid mode",
+      "badge": "Two factors",
+      "desc": "Everything your phrase signs also needs an account PIN, so a stolen phrase enrols nothing. The server limits the guesses without ever seeing it. Forgetting the account PIN ends the account."
+    },
+    "lose": {
+      "title": "Lose the phrase, lose the vault.",
+      "desc": "Nobody, including Zekke, can restore access. You verify your copy of the phrase at sign-up and receive a printable recovery kit. A lost device is different: remove it from another device or with your phrase, and the keys it held are rotated."
+    },
+    "postQuantum": {
+      "title": "Post-quantum where it counts",
+      "desc": "Data at rest uses AES-256-GCM, which survives quantum attacks. Sharing between accounts uses PQXDH, a hybrid of X25519 and ML-KEM-768, so an attacker must break both a classical and a post-quantum algorithm."
+    }
+  },
+  "specs": {
+    "eyebrow": "Technical specifications",
+    "title": "The cryptography, named.",
+    "subtitle": "Every algorithm and parameter, so you can check the claims instead of trusting them.",
+    "rows": [
       {
-        "label": "Symmetric Encryption",
+        "label": "Symmetric encryption",
         "value": "AES-256-GCM"
       },
       {
-        "label": "Classic Key Exchange",
+        "label": "Classic key exchange",
         "value": "X25519 (ECDH)"
       },
       {
-        "label": "Post-Quantum KEM",
-        "value": "ML-KEM-768 (FIPS 203) — for sharing"
+        "label": "Post-quantum KEM",
+        "value": "ML-KEM-768 (FIPS 203), for sharing"
       },
       {
-        "label": "Hybrid Protocol",
-        "value": "PQXDH (X25519 + ML-KEM-768) — for sharing"
+        "label": "Hybrid protocol",
+        "value": "PQXDH (X25519 + ML-KEM-768), for sharing"
       },
       {
-        "label": "Key Derivation",
-        "value": "BIP39 → SLIP-0010 P-256"
+        "label": "Key derivation",
+        "value": "BIP39 (PBKDF2-HMAC-SHA512, 2048 iterations) → SLIP-0010 P-256"
       },
       {
         "label": "Authentication",
-        "value": "ECDSA P-256 Signatures"
+        "value": "ECDSA P-256 signature over a fresh, timestamped, single-use challenge; no secret is transmitted"
       },
       {
-        "label": "PIN Stretching",
-        "value": "PBKDF2-SHA256 (600k) client-side"
+        "label": "PIN rationing",
+        "value": "OPRF (RFC 9497, ristretto255-SHA512): the server counts guesses and never sees the PIN"
       },
       {
-        "label": "Server Hashing",
-        "value": "Argon2id (64 MiB, t=3, p=4)"
+        "label": "PIN derivation",
+        "value": "Argon2id (64 MiB, t=3, p=1), client-side"
       }
     ]
   },
+  "pricing": {
+    "eyebrow": "Pricing",
+    "title": "Free to start. Paid plans add storage.",
+    "bullets": [
+      "A free tier.",
+      "Paid plans add storage. Final prices are not published yet.",
+      "No ads, no tracking, no cookies."
+    ],
+    "waitlist": {
+      "badge": "50% off",
+      "title": "Join the waitlist",
+      "desc": "Waitlist members get 50% off premium subscriptions during the first month after launch.",
+      "emailLabel": "Email address",
+      "placeholder": "you@example.com",
+      "button": "Join the waitlist",
+      "privacyBefore": "This site collects only your email address, for the waitlist. See the ",
+      "privacyLink": "privacy policy",
+      "privacyAfter": "."
+    }
+  },
+  "roadmap": {
+    "eyebrow": "Release status",
+    "title": "Where Zekke is, and what comes next.",
+    "items": [
+      {
+        "date": "September 2026",
+        "badge": "Live now",
+        "title": "Staging release",
+        "desc": "The vault, encrypted notes and synced documents, in Standard and Paranoid mode.",
+        "link": "Try it at test-app.zekke.io"
+      },
+      {
+        "date": "December 2026",
+        "title": "Drive and private sharing",
+        "desc": "Encrypted files, plus private sharing of one item with one person."
+      },
+      {
+        "date": "2027",
+        "title": "Production launch",
+        "desc": "No date yet."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Generate your phrase. Keep it safe. That is the whole account.",
+    "desc": "The staging release is live: the vault, encrypted notes and synced documents, in Standard and Paranoid mode.",
+    "tryApp": "Try the app",
+    "joinWaitlist": "Join the waitlist"
+  },
   "footer": {
-    "tagline": "Your keys, your data. Nobody else's.",
+    "description": "A zero-knowledge encrypted vault for passwords, seed phrases, notes and long documents. Built by Zekke LLC.",
     "product": "Product",
-    "joinWaitlist": "Join Waitlist",
-    "features": "Features",
-    "security": "Security",
-    "howItWorks": "How It Works",
-    "contact": "Contact",
-    "emailUs": "Email Us",
+    "tryApp": "Try the app",
+    "how": "How it works",
+    "security": "Security model",
+    "roadmap": "Release status",
     "legal": "Legal",
-    "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service",
-    "securityPolicy": "Security Policy",
-    "copyright": "© 2026 Zekke™. All rights reserved. Built for privacy. Zekke LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA"
+    "securityPolicy": "Security policy",
+    "privacyPolicy": "Privacy policy",
+    "termsOfService": "Terms of service",
+    "language": "Language",
+    "copyright": "© 2026 Zekke LLC · 30 N Gould St Ste R, Sheridan, WY 82801, USA",
+    "contact": "Contact:"
   },
   "form": {
-    "agreeTo": "I agree to the ",
-    "termsOfService": "Terms of Service",
-    "placeholder": "Enter your email",
     "sending": "Sending...",
-    "successMessage": "You're on the list! Keep an eye on your inbox."
+    "successMessage": "You're on the list! Keep an eye on your inbox.",
+    "alreadyOnList": "You are already on the list!",
+    "error": "Something went wrong. Please try again."
   },
   "terms": {
     "title": "Terms of Service",

@@ -1,14 +1,18 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Nunito } from "next/font/google";
 import "../globals.css";
 import { getDictionary } from "@/lib/dictionaries";
 import { SITE_NAME, SITE_URL, languageTag, locales } from "@/lib/site";
 
-const inter = Inter({
+const nunito = Nunito({
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
-  variable: "--font-inter",
+  weight: ["500", "600", "700", "800", "900"],
+  variable: "--font-nunito",
 });
+
+export const viewport: Viewport = {
+  themeColor: "#FF7A1A",
+};
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -38,11 +42,7 @@ export default async function RootLayout({
   const { lang } = await params;
   return (
     <html lang={languageTag(lang)}>
-      <body
-        className={`${inter.variable} antialiased font-sans`}
-      >
-        {children}
-      </body>
+      <body className={nunito.variable}>{children}</body>
     </html>
   );
 }

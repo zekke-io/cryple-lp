@@ -1,480 +1,332 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import Armadillo from "@/components/Armadillo";
+import ArmadilloSprite from "@/components/ArmadilloSprite";
 import EmailForm from "@/components/EmailForm";
-import EarlyAccessButton from "@/components/EarlyAccessButton";
-import GetAppButton from "@/components/GetAppButton";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
+import Icon, { type IconName } from "@/components/Icon";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 import { getDictionary } from "@/lib/dictionaries";
-import { CONTACT_EMAIL, SITE_NAME, SITE_URL, TEST_APP_URL, languageTag, localizedPath, localizedUrl, pageMetadata } from "@/lib/site";
+import { TEST_APP_URL, localizedPath, pageMetadata } from "@/lib/site";
+import { structuredData } from "@/lib/structured-data";
 
-const showRoadmapTimeline: boolean = true;
-const showEmailSubscription: boolean = true;
-
-const vaultIcons = [
-  '/icons/secrets.svg',
-  '/icons/notes.svg',
-  '/icons/documents.svg',
-  '/icons/drive.svg',
-  '/icons/safe-sharing.svg',
-  '/icons/password-manager.svg',
-];
+const homeIcons: IconName[] = ["secrets", "passwords", "notes", "documents", "files"];
+const storeIcons: IconName[] = ["secrets", "passwords", "notes", "documents"];
+const milestoneDots = ["dot-live", "dot-next", "dot-later"];
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
   return {
-    ...pageMetadata(lang, '', dict.meta.title, dict.meta.description),
+    ...pageMetadata(lang, "", dict.meta.title, dict.meta.description),
     title: { absolute: dict.meta.title },
   };
 }
 
-const structuredData = (lang: string, description: string) => ({
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'Organization',
-      '@id': `${SITE_URL}/#organization`,
-      name: SITE_NAME,
-      legalName: 'Zekke LLC',
-      url: SITE_URL,
-      logo: `${SITE_URL}/Zekke-logo.png`,
-      email: CONTACT_EMAIL,
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '30 N Gould St Ste R',
-        addressLocality: 'Sheridan',
-        addressRegion: 'WY',
-        postalCode: '82801',
-        addressCountry: 'US',
-      },
-      contactPoint: {
-        '@type': 'ContactPoint',
-        email: CONTACT_EMAIL,
-        contactType: 'customer support',
-        availableLanguage: ['English', 'Spanish', 'Portuguese'],
-      },
-    },
-    {
-      '@type': 'WebSite',
-      '@id': `${SITE_URL}/#website`,
-      url: SITE_URL,
-      name: SITE_NAME,
-      inLanguage: ['en', 'es', 'pt-BR'],
-      publisher: { '@id': `${SITE_URL}/#organization` },
-    },
-    {
-      '@type': 'WebApplication',
-      '@id': `${SITE_URL}/#application`,
-      name: SITE_NAME,
-      url: localizedUrl(lang),
-      description,
-      inLanguage: languageTag(lang),
-      applicationCategory: 'SecurityApplication',
-      operatingSystem: 'Web browser',
-      browserRequirements: 'Requires a modern browser with the Web Crypto API',
-      featureList: [
-        'Zero-knowledge, client-side encryption',
-        'AES-256-GCM encryption at rest',
-        'BIP39 recovery phrase as the account',
-        'Post-quantum hybrid key exchange (X25519 + ML-KEM-768) for sharing',
-        'Paranoid Mode: recovery phrase and PIN as two factors',
-        'Encrypted notes and documents synced across devices',
-      ],
-      offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'USD',
-        description: 'Free tier',
-      },
-      publisher: { '@id': `${SITE_URL}/#organization` },
-    },
-  ],
-});
-
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const jsonLd = JSON.stringify(structuredData(lang, dict.meta.description)).replace(/</g, "\\u003c");
 
   return (
-    <div>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(lang, dict.meta.description)).replace(/</g, '\\u003c') }}
-      />
-      {/* Header */}
-      <header>
-        <nav>
-          <Link href={localizedPath(lang)} className="logo">
-            <Image src="/icon.png" alt="Zekke Logo" width={32} height={32} className="logo-image" />
-            Zekke
-          </Link>
-          <ul className="nav-links">
-            {/* Adding the locale to anchors is not strictly necessary for hash links, but safe */}
-            <li><Link href="#features">{dict.nav.features}</Link></li>
-            <li><Link href="#how-it-works">{dict.nav.howItWorks}</Link></li>
-            <li><Link href="#security">{dict.nav.security}</Link></li>
-            <li><Link href="#contact">{dict.nav.contact}</Link></li>
-          </ul>
-          <div className="nav-actions">
-            <LanguageSwitcher currentLang={lang} label={dict.nav.language} />
-            {showEmailSubscription && (
-              <EarlyAccessButton text={dict.nav.getEarlyAccess} />
-            )}
-            <a href={TEST_APP_URL} className="cta-button cta-button-secondary">{dict.nav.tryTestApp}</a>
-          </div>
-        </nav>
-      </header>
+    <div id="top">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
+      <ArmadilloSprite />
+      <SiteHeader lang={lang} dict={dict} />
 
       <main>
-        {/* Hero Section */}
         <section className="hero">
-          <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
-            <h1 className="fade-in-up">{dict.hero.title}</h1>
-            <p className="subtitle fade-in-up">
-              {dict.hero.subtitle}
-            </p>
-
-            <div className="hero-buttons fade-in-up">
-              {showEmailSubscription ? (
-                <GetAppButton text={dict.nav.getEarlyAccess} />
-              ) : (
-                <a href={TEST_APP_URL} className="btn-primary">{dict.nav.tryTestApp}</a>
-              )}
-              <Link href="#features" className="btn-secondary">
-                {dict.hero.learnMore}
-              </Link>
+          <div className="hero-copy">
+            <a className="status-pill" href={TEST_APP_URL}>
+              <span className="status-dot" />
+              <span>{dict.hero.badge}</span>
+            </a>
+            <h1>
+              {dict.hero.titleLine1}
+              <br />
+              <span className="accent">{dict.hero.titleLine2}</span>
+            </h1>
+            <p className="hero-subtitle">{dict.hero.subtitle}</p>
+            <div className="hero-actions">
+              <a className="btn btn-lg" href={TEST_APP_URL}>{dict.hero.tryApp}</a>
+              <a className="btn btn-lg btn-outline" href="#waitlist">{dict.hero.joinWaitlist}</a>
             </div>
-
-            {/* <div className="demo-preview fade-in-up">
-              <h3>{dict.hero.demoTitle}</h3>
-              <p>{dict.hero.demoSubtitle}</p>
-              <div className="demo-log">
-                <div className="demo-log-ok">{dict.hero.demoStage1}</div>
-                <div className="demo-log-warn">{dict.hero.demoStage2}</div>
-                <div className="demo-log-ok">{dict.hero.demoStage3}</div>
-              </div>
-            </div> */}
-
-            <div className="vault-showcase fade-in-up">
-              <p className="vault-label">{dict.hero.vaultLabel}</p>
-              {(() => {
-                const items = dict.hero.vaultItems as string[];
-                const nodes = items.map((item: string, i: number) => ({ item, icon: vaultIcons[i] }));
-                const rows = [nodes.slice(0, 3), nodes.slice(3)];
-                return (
-                  <div className="vault-chain">
-                    {rows.map((row, ri: number) => (
-                      <ul className="vault-row" key={ri}>
-                        {row.map((n) => (
-                          <li className="vault-node" key={n.item}>
-                            <span className="vault-node-ring">
-                              <Image src={n.icon} alt="" width={44} height={44} loading="eager" />
-                            </span>
-                            <span className="vault-node-label">{n.item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    ))}
-                  </div>
-                );
-              })()}
-            </div>
+            <p className="hero-note">{dict.hero.note}</p>
           </div>
-        </section>
 
-        {/* Features Section */}
-        <section id="features" className="features">
-          <div>
-            <h2 className="section-title">{dict.features.title}</h2>
-            <p className="section-subtitle">
-              {dict.features.subtitle}
-            </p>
-
-            <div className="features-sequence">
-              {/* 1 */}
-              <div className="feature-row">
-                <div className="feature-image-container">
-                  <Image src="/digital-padlock.png" alt={dict.features.items[0].imageAlt} fill sizes="(max-width: 768px) 100vw, 50vw" />
-                </div>
-                <div className="feature-text">
-                  {dict.features.items[0].badge && <span className="feature-badge">{dict.features.items[0].badge}</span>}
-                  <h3>{dict.features.items[0].title}</h3>
-                  <p>{dict.features.items[0].desc}</p>
-                </div>
-              </div>
-
-              {/* 2 */}
-              <div className="feature-row">
-                <div className="feature-image-container">
-                  <Image src="/confident.jpg" alt={dict.features.items[1].imageAlt} fill sizes="(max-width: 768px) 100vw, 50vw" />
-                </div>
-                <div className="feature-text">
-                  {dict.features.items[1].badge && <span className="feature-badge">{dict.features.items[1].badge}</span>}
-                  <h3>{dict.features.items[1].title}</h3>
-                  <p>{dict.features.items[1].desc}</p>
-                </div>
-              </div>
-
-              {/* 3 */}
-              <div className="feature-row">
-                <div className="feature-media">
-                  <div className="feature-image-container">
-                    <Image src="/thestandingdesk.jpg" alt={dict.features.items[2].imageAlt} fill sizes="(max-width: 768px) 100vw, 50vw" />
+          <div className="hero-art">
+            <div className="phones" role="img" aria-label={dict.hero.openLabel}>
+              <div className="phone phone-lock" aria-hidden="true">
+                <div className="phone-screen">
+                  <div className="lock-center">
+                    <Armadillo symbol="ball-cream" width={136} height={136} />
+                    <div className="lock-word">zekke</div>
+                    <div className="lock-tagline">{dict.hero.lock.tagline}</div>
+                  </div>
+                  <div className="lock-form">
+                    <div className="lock-label">{dict.hero.lock.phraseLabel}</div>
+                    <div className="mock-input">{dict.hero.lock.phrasePlaceholder}</div>
+                    <div className="mock-button mock-button-ink">{dict.hero.lock.open}</div>
                   </div>
                 </div>
-                <div className="feature-text">
-                  {dict.features.items[2].badge && <span className="feature-badge">{dict.features.items[2].badge}</span>}
-                  <h3>{dict.features.items[2].title}</h3>
-                  <p>{dict.features.items[2].desc}</p>
-                </div>
               </div>
 
-              {/* 4 */}
-              <div className="feature-row">
-                <div className="feature-image-container">
-                  <Image src="/notes.jpg" alt={dict.features.items[3].imageAlt} fill sizes="(max-width: 768px) 100vw, 50vw" />
-                </div>
-                <div className="feature-text">
-                  {dict.features.items[3].badge && <span className="feature-badge">{dict.features.items[3].badge}</span>}
-                  <h3>{dict.features.items[3].title}</h3>
-                  <p>{dict.features.items[3].desc}</p>
-                </div>
-              </div>
-
-              {/* 5 */}
-              <div className="feature-row">
-                <div className="feature-image-container">
-                  <Image src="/guardians.jpg" alt={dict.features.items[4].imageAlt} fill sizes="(max-width: 768px) 100vw, 50vw" />
-                </div>
-                <div className="feature-text">
-                  {dict.features.items[4].badge && <span className="feature-badge">{dict.features.items[4].badge}</span>}
-                  <h3>{dict.features.items[4].title}</h3>
-                  <p>{dict.features.items[4].desc}</p>
-                </div>
-              </div>
-
-              {/* 6 */}
-              <div className="feature-row">
-                <div className="feature-image-container">
-                  <Image src="/bip39.jpg" alt={dict.features.items[5].imageAlt} fill sizes="(max-width: 768px) 100vw, 50vw" />
-                </div>
-                <div className="feature-text">
-                  {dict.features.items[5].badge && <span className="feature-badge">{dict.features.items[5].badge}</span>}
-                  <h3>{dict.features.items[5].title}</h3>
-                  <p>{dict.features.items[5].desc}</p>
-                </div>
-              </div>
-
-              {/* 7 */}
-              <div className="feature-row">
-                <div className="feature-image-container">
-                  <Image src="/paranoid.jpg" alt={dict.features.items[6].imageAlt} fill sizes="(max-width: 768px) 100vw, 50vw" />
-                </div>
-                <div className="feature-text">
-                  {dict.features.items[6].badge && <span className="feature-badge">{dict.features.items[6].badge}</span>}
-                  <h3>{dict.features.items[6].title}</h3>
-                  <p>{dict.features.items[6].desc}</p>
-                </div>
-              </div>
-
-              {/* 8 */}
-              <div className="feature-row">
-                <div className="feature-image-container">
-                  <Image src="/happy.avif" alt={dict.features.items[7].imageAlt} fill sizes="(max-width: 768px) 100vw, 50vw" />
-                </div>
-                <div className="feature-text">
-                  {dict.features.items[7].badge && <span className="feature-badge">{dict.features.items[7].badge}</span>}
-                  <h3>{dict.features.items[7].title}</h3>
-                  <p>{dict.features.items[7].desc}</p>
+              <div className="phone phone-home hide-small" aria-hidden="true">
+                <div className="phone-screen">
+                  <div className="home-head">
+                    <Armadillo symbol="open-app" width={50} height={50} />
+                    <div>
+                      <div className="home-greeting">{dict.hero.home.greeting}</div>
+                      <div className="home-note">{dict.hero.home.note}</div>
+                    </div>
+                  </div>
+                  <div className="home-list">
+                    {dict.hero.home.items.map((item, index) => {
+                      const soon = index === homeIcons.length - 1;
+                      return (
+                        <div key={item} className={soon ? "home-row home-row-soon" : "home-row"}>
+                          <span className="icon-tile"><Icon name={homeIcons[index]} size={20} /></span>
+                          <span className="home-row-label">{item}</span>
+                          {soon && <span className="soon-badge">{dict.hero.home.soon}</span>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="mock-button mock-button-orange">{dict.hero.home.lock}</div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Early Access Form Section */}
-        <section id="early-access" className="cta-section">
-          <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
-            <h2>{showEmailSubscription ? dict.roadmap.title : dict.roadmap.timelineTitle}</h2>
-            {showEmailSubscription && (
-              <p style={{ marginBottom: "2rem" }}>{dict.roadmap.subtitle}</p>
-            )}
+        <section className="trust">
+          <ul className="trust-inner">
+            {dict.trust.items.map((item) => (
+              <li key={item.title} className="trust-item">
+                <div className="trust-title">{item.title}</div>
+                <div className="trust-desc">{item.desc}</div>
+              </li>
+            ))}
+          </ul>
+        </section>
 
-            {showRoadmapTimeline && (
-              <div className="roadmap-timeline">
-                <div className="timeline-item alpha">
-                  <div className="timeline-marker"></div>
-                  <div className="timeline-content-top">
-                    <h3 className="timeline-date">{dict.roadmap.alpha.date}</h3>
-                    <p className="timeline-title">{dict.roadmap.alpha.title}</p>
-                  </div>
-                  <div className="timeline-content-bottom">
-                    <p className="timeline-desc">{dict.roadmap.alpha.desc}</p>
-                  </div>
-                </div>
-            
-                <div className="timeline-item beta">
-                  <div className="timeline-marker"></div>
-                  <div className="timeline-content-top">
-                    <p className="timeline-desc">{dict.roadmap.beta.desc}</p>
-                  </div>
-                  <div className="timeline-content-bottom">
-                    <h3 className="timeline-date">{dict.roadmap.beta.date}</h3>
-                    <p className="timeline-title">{dict.roadmap.beta.title}</p>
-                  </div>
-                </div>
-
-                <div className="timeline-item launch">
-                  <div className="timeline-marker"></div>
-                  <div className="timeline-content-top">
-                    <h3 className="timeline-date">{dict.roadmap.launch.date}</h3>
-                    <p className="timeline-title">{dict.roadmap.launch.title}</p>
-                  </div>
-                  <div className="timeline-content-bottom">
-                    <p className="timeline-desc">{dict.roadmap.launch.desc}</p>
-                  </div>
-                </div>
+        <section id="stores" className="section">
+          <div className="section-head">
+            <div className="eyebrow">{dict.stores.eyebrow}</div>
+            <h2 className="section-title">{dict.stores.title}</h2>
+            <p className="section-lede">{dict.stores.subtitle}</p>
+          </div>
+          <div className="card-grid">
+            {dict.stores.items.map((item, index) => (
+              <div key={item.title} className={index === 3 ? "card card-wide" : "card"}>
+                <span className="card-icon"><Icon name={storeIcons[index]} size={28} /></span>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
               </div>
-            )}
-
-            {showEmailSubscription && (
-              <>
-                <div style={{ marginBottom: '2.5rem' }}>
-                  <p style={{ margin: 0, fontSize: '1.1rem', fontWeight: 500, color: 'white', opacity: 0.9 }} dangerouslySetInnerHTML={{__html: dict.roadmap.discount}}>
-                  </p>
-                </div>
-
-                <EmailForm
-                  termsHref={localizedPath(lang, '/terms')}
-                  text={dict.nav.getEarlyAccess}
-                  dictText={dict.form}
-                />
-              </>
-            )}
+            ))}
+            <div className="card card-wide card-soon">
+              <div className="card-soon-head">
+                <span className="card-icon"><Icon name="files" size={28} /></span>
+                <span className="pill pill-orange">{dict.stores.soon.badge}</span>
+              </div>
+              <h3>{dict.stores.soon.title}</h3>
+              <p>{dict.stores.soon.desc}</p>
+            </div>
           </div>
         </section>
 
-        {/* How It Works Section */}
-        <section id="how-it-works" className="how-it-works">
-          <div>
-            <h2 className="section-title">{dict.howItWorks.title}</h2>
-            <p className="section-subtitle">
-              {dict.howItWorks.subtitle}
-            </p>
+        <section id="how" className="band">
+          <div className="band-inner">
+            <div className="section-head">
+              <div className="eyebrow">{dict.how.eyebrow}</div>
+              <h2 className="section-title">{dict.how.title}</h2>
+            </div>
 
-            <div className="steps">
-              <div className="step">
-                <div className="step-icon">
-                  <Image src="/icons/generate.svg" alt={dict.howItWorks.steps[0].imageAlt} width={196} height={196} />
-                </div>
-                <h3>{dict.howItWorks.steps[0].title}</h3>
-                <p>{dict.howItWorks.steps[0].desc}</p>
+            <ol className="steps">
+              {dict.how.steps.map((step, index) => (
+                <li key={step.title} className="step">
+                  <span className="step-number">{index + 1}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.desc}</p>
+                </li>
+              ))}
+            </ol>
+
+            <div className="diagram">
+              <div className="diagram-panel diagram-device">
+                <h3 className="diagram-title">
+                  <Armadillo symbol="ball" width={40} height={40} />
+                  {dict.how.device.title}
+                </h3>
+                <ul className="diagram-rows">
+                  {dict.how.device.items.map((item) => (
+                    <li key={item} className="diagram-row">{item}</li>
+                  ))}
+                </ul>
               </div>
-
-              <div className="step">
-                <div className="step-icon">
-                  <Image src="/icons/secure.svg" alt={dict.howItWorks.steps[1].imageAlt} width={196} height={196} />
-                </div>
-                <h3>{dict.howItWorks.steps[1].title}</h3>
-                <p>{dict.howItWorks.steps[1].desc}</p>
+              <div className="diagram-arrow" aria-hidden="true">
+                <span className="diagram-arrow-label">
+                  {dict.how.blobLabel[0]}{" "}
+                  <br className="diagram-arrow-break" />
+                  {dict.how.blobLabel[1]}
+                </span>
+                <svg className="diagram-arrow-horizontal" width="48" height="24" viewBox="0 0 48 24">
+                  <path d="M2 12h40M32 4l10 8-10 8" stroke="#C2410C" strokeWidth="5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <svg className="diagram-arrow-vertical" width="24" height="48" viewBox="0 0 24 48">
+                  <path d="M12 2v40M4 32l8 10 8-10" stroke="#C2410C" strokeWidth="5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </div>
-
-              <div className="step">
-                <div className="step-icon">
-                  <Image src="/icons/bitcoin.svg" alt={dict.howItWorks.steps[2].imageAlt} width={196} height={196} />
-                </div>
-                <h3>{dict.howItWorks.steps[2].title}</h3>
-                <p>{dict.howItWorks.steps[2].desc}</p>
-              </div>
-
-              <div className="step">
-                <div className="step-icon">
-                  <Image src="/icons/anywhere.svg" alt={dict.howItWorks.steps[3].imageAlt} width={196} height={196} />
-                </div>
-                <h3>{dict.howItWorks.steps[3].title}</h3>
-                <p>{dict.howItWorks.steps[3].desc}</p>
+              <div className="diagram-panel diagram-server">
+                <h3 className="diagram-title">{dict.how.server.title}</h3>
+                <ul className="diagram-rows">
+                  {dict.how.server.rows.map((row) => (
+                    <li key={row.label} className="diagram-row">
+                      <span className="diagram-row-label">{row.label}</span> {row.text}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Security Section */}
-        <section id="security" className="security">
-          <div className="security-content">
-            <div>
-              <h2 className="section-title" style={{ textAlign: 'left', color: 'white' }}>
-                {dict.security.title}
-              </h2>
-              <p className="section-subtitle" style={{ textAlign: 'left', color: '#d1d5db' }}>
-                {dict.security.subtitle}
+        <section id="security" className="band band-night">
+          <div className="band-inner band-inner-tall">
+            <div className="section-head section-head-wide">
+              <div className="eyebrow">{dict.security.eyebrow}</div>
+              <h2 className="section-title">{dict.security.title}</h2>
+              <p className="section-lede">{dict.security.subtitle}</p>
+            </div>
+
+            <div className="panel-grid">
+              <div className="panel">
+                <div className="panel-head">
+                  <h3>{dict.security.standard.title}</h3>
+                  <span className="pill pill-amber">{dict.security.standard.badge}</span>
+                </div>
+                <p>{dict.security.standard.desc}</p>
+              </div>
+              <div className="panel panel-paranoid">
+                <div className="panel-head">
+                  <h3>{dict.security.paranoid.title}</h3>
+                  <span className="pill pill-violet">{dict.security.paranoid.badge}</span>
+                </div>
+                <p>{dict.security.paranoid.desc}</p>
+              </div>
+            </div>
+
+            <div className="panel-grid">
+              <div className="panel panel-amber">
+                <h3>{dict.security.lose.title}</h3>
+                <p>{dict.security.lose.desc}</p>
+              </div>
+              <div className="panel">
+                <h3>{dict.security.postQuantum.title}</h3>
+                <p>{dict.security.postQuantum.desc}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="specs" className="specs">
+          <div className="specs-head">
+            <div className="eyebrow">{dict.specs.eyebrow}</div>
+            <h2 className="section-title section-title-small">{dict.specs.title}</h2>
+            <p className="specs-lede">{dict.specs.subtitle}</p>
+          </div>
+          <dl className="specs-table">
+            {dict.specs.rows.map((row) => (
+              <div key={row.label} className="spec-row">
+                <dt>{row.label}</dt>
+                <dd>{row.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section id="pricing" className="band">
+          <div className="band-inner pricing-inner">
+            <div className="pricing-copy">
+              <div className="eyebrow">{dict.pricing.eyebrow}</div>
+              <h2 className="section-title">{dict.pricing.title}</h2>
+              <ul className="bullets">
+                {dict.pricing.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </div>
+            <div id="waitlist" className="waitlist">
+              <span className="pill pill-orange pill-large">{dict.pricing.waitlist.badge}</span>
+              <h3>{dict.pricing.waitlist.title}</h3>
+              <p className="waitlist-desc">{dict.pricing.waitlist.desc}</p>
+              <EmailForm
+                labels={{
+                  emailLabel: dict.pricing.waitlist.emailLabel,
+                  placeholder: dict.pricing.waitlist.placeholder,
+                  button: dict.pricing.waitlist.button,
+                  sending: dict.form.sending,
+                  successMessage: dict.form.successMessage,
+                  alreadyOnList: dict.form.alreadyOnList,
+                  error: dict.form.error,
+                }}
+              />
+              <p className="waitlist-privacy">
+                {dict.pricing.waitlist.privacyBefore}
+                <Link href={localizedPath(lang, "/privacy")}>{dict.pricing.waitlist.privacyLink}</Link>
+                {dict.pricing.waitlist.privacyAfter}
               </p>
-
-              <ul className="security-list">
-                {dict.security.bullets.map((bullet: string, i: number) => (
-                  <li key={i}>{bullet}</li>
-                ))}
-              </ul>
             </div>
+          </div>
+        </section>
 
-            <div className="tech-specs">
-              <h3>{dict.security.techSpecsTitle}</h3>
-              <ul>
-                {dict.security.specs.map((spec: { label: string, value: string}, i: number) => (
-                  <li key={i}><strong>{spec.label}:</strong> {spec.value}</li>
-                ))}
-              </ul>
+        <section id="roadmap" className="section">
+          <div className="section-head">
+            <div className="eyebrow">{dict.roadmap.eyebrow}</div>
+            <h2 className="section-title">{dict.roadmap.title}</h2>
+          </div>
+          <ol className="timeline">
+            {dict.roadmap.items.map((item, index) => {
+              const live = index === 0;
+              return (
+                <li key={item.date} className="milestone">
+                  <div className="milestone-track" aria-hidden="true">
+                    <span className={`milestone-dot ${milestoneDots[index]}`} />
+                    <span className="milestone-line" />
+                  </div>
+                  <div className={live ? "milestone-card milestone-card-live" : "milestone-card"}>
+                    <div className="milestone-date">
+                      <span>{item.date}</span>
+                      {"badge" in item && <span className="pill pill-orange pill-small">{item.badge}</span>}
+                    </div>
+                    <h3>{item.title}</h3>
+                    <p>{item.desc}</p>
+                    {"link" in item && <a className="milestone-link" href={TEST_APP_URL}>{item.link}</a>}
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </section>
+
+        <section className="cta">
+          <div className="cta-card">
+            <div className="cta-copy">
+              <h2 className="cta-title">{dict.cta.title}</h2>
+              <p className="cta-desc">{dict.cta.desc}</p>
+              <div className="hero-actions">
+                <a className="btn btn-lg btn-ink" href={TEST_APP_URL}>{dict.cta.tryApp}</a>
+                <a className="btn btn-lg btn-cream" href="#waitlist">{dict.cta.joinWaitlist}</a>
+              </div>
+            </div>
+            <div className="cta-art">
+              <Armadillo symbol="open-cream" className="cta-armadillo" width={380} label={dict.hero.openLabel} />
             </div>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer id="contact">
-        <div className="footer-content">
-          <div className="footer-section brand">
-            <p className="footer-brand">
-              <Image src="/icon.png" alt="Zekke Logo" width={24} height={24} className="logo-image" />
-              Zekke
-            </p>
-            <p style={{ color: '#6b7280', fontSize: '0.9rem' }}>
-              {dict.footer.tagline}
-            </p>
-          </div>
-
-          <div className="footer-section">
-            <p className="footer-section-title">{dict.footer.product}</p>
-            <ul>
-              {showEmailSubscription && (
-                <li><Link href="#early-access">{dict.footer.joinWaitlist}</Link></li>
-              )}
-              <li><Link href="#features">{dict.footer.features}</Link></li>
-              <li><Link href="#security">{dict.footer.security}</Link></li>
-              <li><Link href="#how-it-works">{dict.footer.howItWorks}</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-section">
-            <p className="footer-section-title">{dict.footer.contact}</p>
-            <ul>
-              <li><a href="mailto:contact@Zekke.io">{dict.footer.emailUs}</a></li>
-            </ul>
-          </div>
-
-          <div className="footer-section">
-            <p className="footer-section-title">{dict.footer.legal}</p>
-            <ul>
-              <li><Link href={localizedPath(lang, '/privacy')}>{dict.footer.privacyPolicy}</Link></li>
-              <li><Link href={localizedPath(lang, '/terms')}>{dict.footer.termsOfService}</Link></li>
-              <li><Link href={localizedPath(lang, '/security-policy')}>{dict.footer.securityPolicy}</Link></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="footer-bottom">
-          <p>{dict.footer.copyright}</p>
-        </div>
-      </footer>
+      <SiteFooter lang={lang} dict={dict} />
     </div>
   );
 }
