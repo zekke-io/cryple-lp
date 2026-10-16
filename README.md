@@ -81,6 +81,16 @@ Spanish and Portuguese run roughly 20–30% longer than English. The header wrap
 - **Anchors.** `html { scroll-behavior: smooth }` (off under `prefers-reduced-motion`) handles the section links; the header is not fixed, so no scroll offset is needed.
 - **Decorative vs. informative.** The phones are one `role="img"` with a label; the closing mascot is a labelled image; the logo mark next to the wordmark is hidden from assistive technology because the link already has a label.
 
+## Welcome email
+
+`template/welcomeEmail.mjml` is the email a person receives after joining the waitlist (sent by Loops). It is the `Zekke Welcome` artifact: cream ground, the wordmark, "You're on the list.", three numbered notes and a small footer, 640px wide and one column on phones.
+
+- **Compile** with `npx mjml template/welcomeEmail.mjml -o welcomeEmail.html` (MJML is not a dependency of this project; `npx` fetches it). Paste the HTML into the Loops editor.
+- **The logo is an image** (`public/email-logo.png`, served at `https://zekke.io/email-logo.png`), because mail clients do not render SVG or load web fonts reliably. It must be deployed before the email shows the logo. If the mark or the wordmark changes, export it again at 2× and keep the 147px display width.
+- **Fonts:** Nunito is requested with a web font where the client supports it and falls back to Helvetica or Arial elsewhere.
+- **`{unsubscribe_link}`** is the Loops placeholder for the unsubscribe URL. The design does not show an unsubscribe link, but a mailing-list email should carry one, so it stays in the footer.
+- **Copy rules:** the promise in the email (one more email at launch, everything else inside the app) is a product commitment. Change it only together with the privacy policy and the pricing section, which repeat the 50% waitlist perk.
+
 ## Development
 
 ```bash

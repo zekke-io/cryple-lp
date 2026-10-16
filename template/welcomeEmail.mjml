@@ -1,103 +1,230 @@
 <mjml>
   <mj-head>
-    <mj-title>Welcome to Zekke</mj-title>
-    <mj-preview>Let's take your privacy back.</mj-preview>
+    <mj-title>You're on the Zekke waitlist</mj-title>
+    <mj-preview>Your spot is saved. We'll write once more, when the official version is ready.</mj-preview>
+    <mj-font
+      name="Nunito"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&amp;display=swap"
+    />
     <mj-attributes>
       <mj-all
-        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-family="Nunito, 'Helvetica Neue', Helvetica, Arial, sans-serif"
       />
-      <mj-text font-size="16px" color="#4b5563" line-height="1.5" />
+      <mj-text
+        font-size="18px"
+        font-weight="600"
+        color="#4A2E1A"
+        line-height="1.6"
+        padding="0 0 20px"
+      />
     </mj-attributes>
-    <mj-style inline="inline">
-      .main-box {
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        background-color: #f9fafb;
+    <mj-style>
+      a {
+        color: #c2410c;
       }
-      .link {
-        color: #6366f1;
-        text-decoration: none;
+      .edge td,
+      .edge {
+        background-color: #fff4e8;
+      }
+      @media only screen and (max-width: 480px) {
+        .edge > table > tbody > tr > td {
+          padding-left: 24px !important;
+          padding-right: 24px !important;
+        }
+        .headline div {
+          font-size: 38px !important;
+        }
       }
     </mj-style>
   </mj-head>
-  <mj-body background-color="#ffffff">
-    <!-- Header with Logo -->
-    <mj-section padding-bottom="10px">
+  <mj-body width="640px" background-color="#FFF4E8">
+    <mj-section css-class="edge" padding="56px 48px 0">
+      <mj-column>
+        <mj-image
+          src="https://zekke.io/email-logo.png"
+          alt="zekke"
+          href="https://zekke.io"
+          width="147px"
+          align="left"
+          padding="0 0 24px"
+        />
+
+        <mj-text
+          css-class="headline"
+          font-size="46px"
+          font-weight="900"
+          color="#2A1608"
+          line-height="1.05"
+          letter-spacing="-0.035em"
+          padding="0 0 24px"
+        >
+          <h1
+            style="
+              margin: 0;
+              font-size: inherit;
+              font-weight: inherit;
+              letter-spacing: inherit;
+              line-height: inherit;
+            "
+          >
+            You're on the list.
+          </h1>
+        </mj-text>
+
+        <mj-text padding="0 0 20px">
+          Thanks for joining the Zekke waitlist. Your spot is saved.
+        </mj-text>
+
+        <mj-text>
+          <strong style="font-weight: 900; color: #2a1608"
+            >We never send you emails.</strong
+          >
+          No newsletters, no promotions, no reminders. This note is the only one
+          for now, and the next will be a single notice, when the official
+          version is ready.
+        </mj-text>
+
+        <mj-text>
+          From then on, all communication from Zekke happens through
+          notifications inside the app, never by email.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section css-class="edge" padding="0 48px">
+      <mj-column>
+        <mj-table padding="0" font-size="16px" line-height="1.5">
+          <tr>
+            <td
+              width="42"
+              valign="top"
+              style="padding: 0 14px 14px 0; width: 28px"
+            >
+              <div
+                style="
+                  width: 28px;
+                  height: 28px;
+                  border-radius: 14px;
+                  background-color: #ff7a1a;
+                  color: #2a1608;
+                  font-size: 15px;
+                  font-weight: 900;
+                  line-height: 28px;
+                  text-align: center;
+                "
+              >
+                1
+              </div>
+            </td>
+            <td
+              valign="top"
+              style="
+                padding: 0 0 14px;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 1.5;
+                color: #4a2e1a;
+              "
+            >
+              <strong style="font-weight: 900; color: #2a1608"
+                >One email, soon.</strong
+              >
+              When the official version launches, you'll get one notice. That's
+              all.
+            </td>
+          </tr>
+          <tr>
+            <td
+              width="42"
+              valign="top"
+              style="padding: 0 14px 14px 0; width: 28px"
+            >
+              <div
+                style="
+                  width: 28px;
+                  height: 28px;
+                  border-radius: 14px;
+                  background-color: #ff7a1a;
+                  color: #2a1608;
+                  font-size: 15px;
+                  font-weight: 900;
+                  line-height: 28px;
+                  text-align: center;
+                "
+              >
+                2
+              </div>
+            </td>
+            <td
+              valign="top"
+              style="
+                padding: 0 0 14px;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 1.5;
+                color: #4a2e1a;
+              "
+            >
+              <strong style="font-weight: 900; color: #2a1608">Your perk.</strong>
+              Waitlist members get 50% off premium subscriptions during the
+              first month after launch.
+            </td>
+          </tr>
+          <tr>
+            <td
+              width="42"
+              valign="top"
+              style="padding: 0 14px 0 0; width: 28px"
+            >
+              <div
+                style="
+                  width: 28px;
+                  height: 28px;
+                  border-radius: 14px;
+                  background-color: #ff7a1a;
+                  color: #2a1608;
+                  font-size: 15px;
+                  font-weight: 900;
+                  line-height: 28px;
+                  text-align: center;
+                "
+              >
+                3
+              </div>
+            </td>
+            <td
+              valign="top"
+              style="
+                padding: 0;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 1.5;
+                color: #4a2e1a;
+              "
+            >
+              <strong style="font-weight: 900; color: #2a1608"
+                >Only the waitlist.</strong
+              >
+              Your email address is used for this list and nothing else.
+            </td>
+          </tr>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+
+    <mj-section css-class="edge" padding="32px 48px 40px">
       <mj-column>
         <mj-text
-          align="center"
-          font-size="28px"
-          font-weight="bold"
-          color="#6366f1"
+          font-size="13px"
+          color="#6B4A32"
+          line-height="1.55"
           padding="0"
         >
-          Zekke
-        </mj-text>
-      </mj-column>
-    </mj-section>
-
-    <!-- Main Content Box -->
-    <mj-section padding="0 20px">
-      <mj-column css-class="main-box" padding="20px">
-        <mj-text
-          font-size="20px"
-          font-weight="600"
-          color="#1f2937"
-          margin-top="0"
-          padding-bottom="10px"
-        >
-          Welcome to the Waitlist
-        </mj-text>
-
-        <mj-text> Hi there, </mj-text>
-
-        <mj-text>
-          This is Philippe, the founder of Zekke. I wanted to personally thank
-          you for taking the time to join our waitlist. We are working
-          incredibly hard to deliver the ultimate zero-knowledge vault for your
-          passwords, crypto, and private files.
-        </mj-text>
-
-        <mj-text>
-          Because true privacy is the core of everything we build, I want to
-          make you a promise right now: you won't get spammed by us. We will
-          only email you for one reason—<strong
-            >to send your early access invite the moment the platform goes live.
-            No tracking links, no marketing funnels, just a simple
-            heads-up.</strong
-          >
-        </mj-text>
-
-        <mj-text>
-          Thank you for joining the movement to take back our digital privacy.
-        </mj-text>
-
-        <mj-text font-style="italic">
-          Best regards, <br />
-          <strong>Philippe Berto</strong><br />
-          Founder, Zekke
-        </mj-text>
-      </mj-column>
-    </mj-section>
-
-    <!-- Footer -->
-    <mj-section padding-top="20px">
-      <mj-column>
-        <mj-text
-          align="center"
-          font-size="12px"
-          color="#9ca3af"
-          line-height="1.8"
-        >
-          © 2026 Zekke. Your keys, your data, complete privacy.<br />
-          <a href="https://Zekke.io" class="link">Zekke.io</a><br /><br />
-          Too many emails?
-          <a
-            href="{unsubscribe_link}"
-            class="link"
-            style="text-decoration: underline"
-            >Unsubscribe safely here</a
-          >.
+          You're receiving this because you joined the waitlist at zekke.io. No
+          need to reply: we won't write again until the official version is out.
+          <a href="https://zekke.io/privacy">Privacy policy</a>
+          ·
+          <a href="{unsubscribe_link}">Unsubscribe</a>
         </mj-text>
       </mj-column>
     </mj-section>
