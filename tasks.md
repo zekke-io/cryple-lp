@@ -15,7 +15,7 @@ Today `https://zekke.io` answers **307** to `https://www.zekke.io/`, and the pag
   - `curl -sI https://www.zekke.io` → `308`, `location: https://zekke.io/`
   - `curl -sI https://zekke.io` → `200`
   - `https://zekke.io/sitemap.xml` and `https://zekke.io/robots.txt` load
-  - `https://zekke.io/opengraph-image` returns a PNG
+  - `https://zekke.io/social-card.png` returns the 1200×630 PNG, and the home page's `og:image` points at it
 - [ ] Add `zekke.io` to Google Search Console and Bing Webmaster Tools and submit `https://zekke.io/sitemap.xml`. Bing's index also feeds ChatGPT search and Copilot.
 - [ ] Validate the home page in Google's Rich Results Test (JSON-LD) and in LinkedIn Post Inspector (share preview).
 

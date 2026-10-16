@@ -1,12 +1,11 @@
 {
   "meta": {
-    "title": "Zekke — Bóveda Cifrada de Conocimiento Cero para Contraseñas, Frases Semilla y Notas",
-    "description": "Una bóveda cifrada de conocimiento cero para contraseñas, frases semilla, notas y documentos largos. Todo se cifra en tu navegador, con claves que solo tú tienes.",
-    "ogImageTagline": "Una bóveda cifrada de conocimiento cero para contraseñas, frases semilla, notas y documentos largos.",
-    "logoLabel": "Armadillo de Zekke, enrollado y cerrado",
+    "title": "Zekke — Bóveda Zero-Knowledge para Contraseñas y Seed Phrases",
+    "description": "Contraseñas, seed phrases, notas, documentos y archivos, cifrados en tu dispositivo antes de enviarlos. Los servidores de Zekke no tienen clave para abrirlos.",
     "privacyDescription": "Cómo Zekke trata tus datos: qué recoge la página, por qué y durante cuánto tiempo se conservan.",
     "termsDescription": "Los términos que se aplican al usar el sitio web de Zekke y unirte a la lista de espera.",
-    "securityPolicyDescription": "Cómo reportar una vulnerabilidad de seguridad en Zekke y cómo gestionamos las divulgaciones."
+    "securityPolicyDescription": "Cómo reportar una vulnerabilidad de seguridad en Zekke y cómo gestionamos las divulgaciones.",
+    "socialCardAlt": "Zekke: guarda datos que solo tú puedes leer. Dos pantallas de celular muestran la bienvenida y el inicio de la app."
   },
   "nav": {
     "stores": "Qué guarda",
@@ -20,39 +19,63 @@
     "homeLabel": "Zekke, volver al inicio"
   },
   "hero": {
-    "badge": "Versión de staging disponible ahora",
-    "titleLine1": "Todo tuyo.",
-    "titleLine2": "Solo tuyo.",
-    "subtitle": "Zekke es una bóveda cifrada de conocimiento cero para tus contraseñas, frases semilla, notas y documentos largos. Todo se cifra en tu navegador, con claves que solo tú tienes.",
     "tryApp": "Probar la app",
     "joinWaitlist": "Unirme a la lista de espera",
-    "note": "Tu frase de recuperación es tu cuenta. No hay correo, ni contraseña, ni recuperación de cuenta de ningún tipo.",
-    "lockedLabel": "Armadillo de Zekke, enrollado y cerrado",
     "openLabel": "Armadillo de Zekke, relajado y abierto",
-    "lock": {
-      "tagline": "Todo tuyo. Solo tuyo.",
-      "phraseLabel": "Frase de recuperación",
-      "phrasePlaceholder": "12 o 24 palabras",
-      "open": "Abrir"
-    },
     "home": {
       "greeting": "¡Hola! Todo guardado.",
-      "note": "Solo tú ves esto.",
-      "items": [
-        "Secretos",
-        "Contraseñas",
-        "Notas",
-        "Documentos",
-        "Archivos"
-      ],
       "soon": "Pronto",
-      "lock": "Cerrar Zekke"
+      "greetingNote": "Solo tú ves esto.",
+      "storage": "Almacenamiento",
+      "plan": "Plan gratuito",
+      "used": "128 MB",
+      "usedOf": "de 500 MB usados",
+      "free": "372 MB libres",
+      "seePlans": "Ver planes",
+      "whatNow": "¿Qué hacemos ahora?",
+      "actions": [
+        "Nueva nota",
+        "Agregar secreto",
+        "Foto o video"
+      ],
+      "yourApps": "Tus apps",
+      "apps": [
+        "Notas",
+        "Contraseñas",
+        "Secretos",
+        "Documentos",
+        "Hojas de cálculo",
+        "Drive",
+        "Calendario",
+        "Tareas",
+        "Diario"
+      ],
+      "tabs": [
+        "Inicio",
+        "Buscar",
+        "Actividad",
+        "Configuración"
+      ]
+    },
+    "badge": "Staging disponible ahora",
+    "titleLine1": "Guarda datos que",
+    "titleLine2": "solo tú puedes leer.",
+    "subtitle": "Tus contraseñas, seed phrases, notas, documentos y archivos, cifrados en tu dispositivo antes de enviar nada. Los servidores de Zekke no tienen ninguna clave que abra nada de eso.",
+    "discountBadge": "50% off",
+    "note": "Tu frase de recuperación es tu cuenta: sin correo, sin contraseña. Nadie, ni siquiera nosotros, puede restablecerla ni recuperarla.",
+    "welcomeLabel": "Pantalla de bienvenida de la app Zekke, tema claro",
+    "homeLabel": "Pantalla de inicio de la app Zekke, tema claro",
+    "welcome": {
+      "tagline": "Todo tuyo. Solo tuyo.",
+      "createAccount": "Crear cuenta",
+      "signIn": "Iniciar sesión",
+      "note": "Tu frase de recuperación es tu cuenta. Sin correo, sin contraseña."
     }
   },
   "trust": {
     "items": [
       {
-        "title": "Conocimiento cero",
+        "title": "Zero-knowledge",
         "desc": "Zekke nunca tiene una clave capaz de descifrar tus datos."
       },
       {
@@ -72,29 +95,29 @@
   "stores": {
     "eyebrow": "Qué guarda",
     "title": "Lo que no puedes permitirte perder, ni filtrar.",
-    "subtitle": "Secretos, contraseñas, notas y documentos largos hoy. Archivos cifrados próximamente.",
     "items": [
       {
         "title": "Secretos",
-        "desc": "Frases semilla, datos de cuentas y credenciales, cada uno sellado con su propia clave."
+        "desc": "Seed phrases, claves y números de cuenta: los pequeños valores que desbloquean todo lo demás. Ocultos hasta que los pidas."
       },
       {
         "title": "Contraseñas",
-        "desc": "Tus inicios de sesión en una bóveda que el servidor no puede abrir, restaurada en cualquier navegador con tu frase."
+        "desc": "Sitios, nombres de usuario y contraseñas, guardados y rellenados por la extensión del navegador."
       },
       {
         "title": "Notas",
-        "desc": "Ideas rápidas y datos privados, cifrados de extremo a extremo como todo lo demás."
+        "desc": "Textos cortos para ideas rápidas y datos privados, organizados en pestañas."
       },
       {
-        "title": "Documentos largos",
-        "desc": "Escribe con un editor de texto enriquecido y sincronízalo entre tus dispositivos mientras escribes, cifrado de extremo a extremo. El servidor guarda y reenvía cambios sellados y no combina nada."
+        "title": "Documentos y hojas de cálculo",
+        "desc": "Escribe textos largos en un editor de texto enriquecido y sincronízalos entre tus dispositivos mientras escribes, cifrados de extremo a extremo. El servidor guarda y reenvía cambios sellados y no combina nada. Las hojas de cálculo cifradas también se sincronizan entre tus dispositivos."
       }
     ],
-    "soon": {
-      "badge": "Previsto para diciembre de 2026",
-      "title": "Archivos cifrados y compartir en privado",
-      "desc": "Almacenamiento cifrado para imágenes y PDF, y compartir en privado un elemento con una persona."
+    "subtitle": "Secretos, contraseñas, notas, documentos, hojas de cálculo y archivos, con la opción de compartir de forma segura. Todo cifrado antes de salir de tu dispositivo.",
+    "drive": {
+      "badge": "Disponible ahora",
+      "title": "Drive y compartir de forma segura",
+      "desc": "Sube cualquier archivo a carpetas, con una Papelera que conserva los elementos eliminados por un tiempo. Envía un elemento o archivo a otro usuario de Zekke, y el servidor reenvía un blob que no puede abrir."
     }
   },
   "how": {
@@ -115,7 +138,7 @@
       },
       {
         "title": "Escribe la frase en cualquier lugar",
-        "desc": "Escribir la frase en un navegador nuevo lo registra como dispositivo y restaura toda la bóveda. Cada dispositivo tiene sus propias claves y un PIN de 6 dígitos que bloquea la app."
+        "desc": "Escribir la frase en un navegador nuevo lo registra como dispositivo y restaura toda la bóveda. Cada dispositivo tiene sus propias claves y su propio PIN de dispositivo de 6 dígitos, que las desbloquea."
       }
     ],
     "device": {
@@ -151,17 +174,19 @@
   },
   "security": {
     "eyebrow": "Modelo de seguridad",
-    "title": "Conocimiento cero por construcción, no por política.",
+    "title": "Zero-knowledge por construcción, no por política.",
     "subtitle": "Zekke no puede leer tus datos, ni siquiera por orden legal, porque nunca tiene una clave capaz de descifrarlos.",
     "standard": {
       "title": "Modo estándar",
-      "badge": "El servidor nunca ve el PIN",
-      "desc": "El PIN desbloquea tus claves en ese dispositivo. El servidor limita los intentos sin ver nunca el PIN, y tras demasiados errores ese dispositivo se vuelve a registrar con tu frase."
+      "badge": "Recomendado",
+      "desc": "Solo la frase de recuperación protege la cuenta, y cada dispositivo tiene su propio PIN de dispositivo de 6 dígitos. El servidor cuenta cada intento sin ver nunca el PIN. Tras diez errores, ese dispositivo olvida la cuenta hasta que vuelvas a escribir tu frase. Puedes pasar al modo paranoico en cualquier momento, desde Configuración.",
+      "bestFor": "Ideal para: la mayoría de las personas. Es el modo predeterminado y la opción recomendada."
     },
     "paranoid": {
       "title": "Modo paranoico",
       "badge": "Dos factores",
-      "desc": "Todo lo que firma tu frase exige además un PIN de cuenta, así que una frase robada no registra ningún dispositivo. El servidor limita los intentos sin ver nunca el PIN. Olvidar el PIN de la cuenta termina la cuenta."
+      "desc": "Dos cosas protegen la cuenta: tu frase de recuperación y un PIN de cuenta de 6 dígitos. Agregar un dispositivo con tu frase, quitar dispositivos y eliminar la cuenta requieren el PIN de la cuenta, así que una frase robada no puede hacer ninguna de esas cosas. El modo paranoico no se puede desactivar, y olvidar el PIN de la cuenta termina la cuenta.",
+      "bestFor": "Ideal para: quienes temen que su frase sea encontrada o copiada y aceptan el riesgo de olvidar el PIN de la cuenta."
     },
     "lose": {
       "title": "Pierdes la frase, pierdes la bóveda.",
@@ -169,7 +194,7 @@
     },
     "postQuantum": {
       "title": "Poscuántico donde importa",
-      "desc": "Los datos en reposo usan AES-256-GCM, que resiste los ataques cuánticos. Compartir entre cuentas usa PQXDH, un híbrido de X25519 y ML-KEM-768, así que un atacante debe romper un algoritmo clásico y uno poscuántico."
+      "desc": "Los datos en reposo usan AES-256-GCM, considerado resistente a los ataques cuánticos conocidos. Compartir entre cuentas usa PQXDH, un híbrido de X25519 y ML-KEM-768, así que un atacante debe romper un algoritmo clásico y uno poscuántico."
     }
   },
   "specs": {
@@ -203,7 +228,7 @@
       },
       {
         "label": "Racionamiento del PIN",
-        "value": "OPRF (RFC 9497, ristretto255-SHA512): el servidor cuenta los intentos y nunca ve el PIN"
+        "value": "OPRF (RFC 9497, ristretto255-SHA512): el servidor cuenta los intentos y nunca ve ninguno de los PIN"
       },
       {
         "label": "Derivación del PIN",
@@ -215,7 +240,7 @@
     "eyebrow": "Precios",
     "title": "Empieza gratis. Los planes de pago añaden almacenamiento.",
     "bullets": [
-      "Un plan gratuito.",
+      "Un plan gratuito con 500 MB de almacenamiento.",
       "Los planes de pago añaden almacenamiento. Aún no se han publicado los precios finales.",
       "Sin anuncios, sin rastreo, sin cookies."
     ],
@@ -238,14 +263,14 @@
       {
         "date": "Septiembre de 2026",
         "badge": "Disponible ahora",
-        "title": "Versión de staging",
-        "desc": "La bóveda, las notas cifradas y los documentos sincronizados, en modo estándar y paranoico.",
+        "title": "Staging",
+        "desc": "Secretos, contraseñas, notas, documentos, hojas de cálculo, Drive y compartir de forma segura ya funcionan hoy, en modo estándar y paranoico.",
         "link": "Pruébala en test-app.zekke.io"
       },
       {
-        "date": "Diciembre de 2026",
-        "title": "Drive y compartir en privado",
-        "desc": "Archivos cifrados, y compartir en privado un elemento con una persona."
+        "date": "Siguiente",
+        "title": "Lo que viene",
+        "desc": "Calendario y Tareas, un enlace a un buzón público que cualquiera puede usar para enviarte archivos sin tener cuenta, una Galería para fotos y videos y un espacio para documentos oficiales, como tu pasaporte y contratos."
       },
       {
         "date": "2027",
@@ -256,12 +281,11 @@
   },
   "cta": {
     "title": "Genera tu frase. Guárdala bien. Esa es toda la cuenta.",
-    "desc": "La versión de staging ya está disponible: la bóveda, las notas cifradas y los documentos sincronizados, en modo estándar y paranoico.",
     "tryApp": "Probar la app",
-    "joinWaitlist": "Unirme a la lista de espera"
+    "joinWaitlist": "Unirme a la lista de espera",
+    "desc": "El staging está abierto. Crea una cuenta gratuita con 500 MB de almacenamiento cifrado: sin correo, sin contraseña."
   },
   "footer": {
-    "description": "Una bóveda cifrada de conocimiento cero para contraseñas, frases semilla, notas y documentos largos. Creada por Zekke LLC.",
     "product": "Producto",
     "tryApp": "Probar la app",
     "how": "Cómo funciona",
@@ -272,8 +296,9 @@
     "privacyPolicy": "Política de privacidad",
     "termsOfService": "Términos del servicio",
     "language": "Idioma",
-    "copyright": "© 2026 Zekke LLC · 30 N Gould St Ste R, Sheridan, WY 82801, EE. UU.",
-    "contact": "Contacto:"
+    "contact": "Contacto:",
+    "description": "Un drive personal zero-knowledge para contraseñas, seed phrases, notas, documentos y archivos. Creado por Cryple LLC.",
+    "copyright": "© 2026 Cryple LLC · 30 N Gould St Ste R, Sheridan, WY 82801, EE. UU."
   },
   "form": {
     "sending": "Enviando...",
@@ -332,7 +357,7 @@
       },
       {
         "title": "9. Contáctanos",
-        "content": "Si tienes alguna pregunta sobre estos Términos, contáctanos a través del correo electrónico: contact@Zekke.io o por correo postal en: Zekke LLC, 30 N Gould St Ste R, Sheridan, WY 82801, EE. UU.",
+        "content": "Si tienes alguna pregunta sobre estos Términos, contáctanos a través del correo electrónico: contact@zekke.io o por correo postal en: Cryple LLC, 30 N Gould St Ste R, Sheridan, WY 82801, EE. UU.",
         "items": []
       }
     ]
@@ -344,7 +369,7 @@
     "sections": [
       {
         "title": "1. Introducción",
-        "content": "¡Bienvenido a Zekke! Los servicios son operados por Zekke LLC, con sede en 30 N Gould St Ste R, Sheridan, WY 82801, EE. UU. Respetamos tu privacidad y estamos comprometidos a proteger tus datos personales. Esta Política de Privacidad te informará sobre cómo cuidamos tus datos personales cuando visitas nuestro sitio web.",
+        "content": "¡Bienvenido a Zekke! Los servicios son operados por Cryple LLC, con sede en 30 N Gould St Ste R, Sheridan, WY 82801, EE. UU. Respetamos tu privacidad y estamos comprometidos a proteger tus datos personales. Esta Política de Privacidad te informará sobre cómo cuidamos tus datos personales cuando visitas nuestro sitio web.",
         "note": null,
         "items": [],
         "extra": null,
@@ -388,7 +413,7 @@
       },
       {
         "title": "6. Contáctanos",
-        "content": "Si tienes alguna duda sobre esta Política de Privacidad, contáctanos a través del correo electrónico: contact@Zekke.io o por correo postal en: Zekke LLC, 30 N Gould St Ste R, Sheridan, WY 82801, EE. UU.",
+        "content": "Si tienes alguna duda sobre esta Política de Privacidad, contáctanos a través del correo electrónico: contact@zekke.io o por correo postal en: Cryple LLC, 30 N Gould St Ste R, Sheridan, WY 82801, EE. UU.",
         "note": null,
         "items": [],
         "extra": null,
@@ -456,7 +481,7 @@
       },
       {
         "title": "7. Información de Contacto",
-        "content": "Para divulgaciones urgentes de seguridad o preguntas sobre esta política, comunícate directamente a: contact@Zekke.io o por correo postal en: Zekke LLC, 30 N Gould St Ste R, Sheridan, WY 82801, EE. UU.",
+        "content": "Para divulgaciones urgentes de seguridad o preguntas sobre esta política, comunícate directamente a: contact@zekke.io o por correo postal en: Cryple LLC, 30 N Gould St Ste R, Sheridan, WY 82801, EE. UU.",
         "note": null,
         "items": []
       }

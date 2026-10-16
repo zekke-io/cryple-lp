@@ -1,12 +1,11 @@
 {
   "meta": {
-    "title": "Zekke — Zero-Knowledge Encrypted Vault for Passwords, Seed Phrases and Notes",
-    "description": "A zero-knowledge encrypted vault for passwords, seed phrases, notes and long documents. Everything is encrypted in your browser, with keys only you hold.",
-    "ogImageTagline": "A zero-knowledge encrypted vault for passwords, seed phrases, notes and long documents.",
-    "logoLabel": "Zekke armadillo, rolled up and locked",
+    "title": "Zekke — Zero-Knowledge Vault for Passwords & Seed Phrases",
+    "description": "Store passwords, seed phrases, notes, documents and files encrypted on your device before anything is sent. Zekke's servers hold no key that opens any of it.",
     "privacyDescription": "How Zekke handles your data: what the landing page collects, why, and how long it is kept.",
     "termsDescription": "The terms that apply when you use the Zekke website and join the early access waitlist.",
-    "securityPolicyDescription": "How to report a security vulnerability in Zekke, and how we handle disclosures."
+    "securityPolicyDescription": "How to report a security vulnerability in Zekke, and how we handle disclosures.",
+    "socialCardAlt": "Zekke: store data that only you can read. Two phone screens show the app's welcome and home screens."
   },
   "nav": {
     "stores": "What it stores",
@@ -20,33 +19,57 @@
     "homeLabel": "Zekke, back to top"
   },
   "hero": {
-    "badge": "Staging release live now",
-    "titleLine1": "All yours.",
-    "titleLine2": "Only yours.",
-    "subtitle": "Zekke is a zero-knowledge encrypted vault for your passwords, seed phrases, notes and long documents. Everything is encrypted in your browser, with keys only you hold.",
+    "badge": "Staging live now",
+    "titleLine1": "Store data that",
+    "titleLine2": "only you can read.",
+    "subtitle": "Your passwords, seed phrases, notes, documents and files, encrypted on your device before anything is sent. Zekke's servers hold no key that opens any of it.",
     "tryApp": "Try the app",
     "joinWaitlist": "Join the waitlist",
-    "note": "Your recovery phrase is your account. There is no email, no password, and no account recovery of any kind.",
-    "lockedLabel": "Zekke armadillo, rolled up and locked",
+    "discountBadge": "50% off",
+    "note": "Your recovery phrase is your account: no email, no password. Nobody, including us, can reset or recover it.",
+    "welcomeLabel": "Zekke app welcome screen, light theme",
+    "homeLabel": "Zekke app home screen, light theme",
     "openLabel": "Zekke armadillo, relaxed and open",
-    "lock": {
+    "welcome": {
       "tagline": "All yours. Only yours.",
-      "phraseLabel": "Recovery phrase",
-      "phrasePlaceholder": "12 or 24 words",
-      "open": "Open"
+      "createAccount": "Create account",
+      "signIn": "Sign in",
+      "note": "Your recovery phrase is your account. No email, no password."
     },
     "home": {
       "greeting": "Hi! All stored.",
-      "note": "Only you can see this.",
-      "items": [
-        "Secrets",
-        "Passwords",
-        "Notes",
-        "Documents",
-        "Files"
+      "greetingNote": "Only you can see this.",
+      "storage": "Storage",
+      "plan": "Free plan",
+      "used": "128 MB",
+      "usedOf": "of 500 MB used",
+      "free": "372 MB free",
+      "seePlans": "See plans",
+      "whatNow": "What shall we do now?",
+      "actions": [
+        "New note",
+        "Add secret",
+        "Photo or video"
       ],
       "soon": "Soon",
-      "lock": "Lock Zekke"
+      "yourApps": "Your apps",
+      "apps": [
+        "Notes",
+        "Passwords",
+        "Secrets",
+        "Documents",
+        "Spreadsheets",
+        "Drive",
+        "Calendar",
+        "To-do",
+        "Diary"
+      ],
+      "tabs": [
+        "Home",
+        "Search",
+        "Activity",
+        "Settings"
+      ]
     }
   },
   "trust": {
@@ -72,29 +95,29 @@
   "stores": {
     "eyebrow": "What it stores",
     "title": "The things you cannot afford to lose, or to leak.",
-    "subtitle": "Secrets, passwords, notes and long documents today. Encrypted files next.",
+    "subtitle": "Secrets, passwords, notes, documents, spreadsheets and files, with safe sharing. All encrypted before they leave your device.",
     "items": [
       {
         "title": "Secrets",
-        "desc": "Seed phrases, account details and credentials, each sealed with its own key."
+        "desc": "Seed phrases, keys and account numbers: the small values that unlock everything else. Hidden until you ask for them."
       },
       {
         "title": "Passwords",
-        "desc": "Your logins in a vault the server cannot open, restored on any browser with your phrase."
+        "desc": "Sites, usernames and passwords, saved and filled by the browser extension."
       },
       {
         "title": "Notes",
-        "desc": "Quick thoughts and private details, encrypted end to end like everything else."
+        "desc": "Short text for quick thoughts and private details, kept in tabs."
       },
       {
-        "title": "Long-form documents",
-        "desc": "Write with a rich text editor and have it sync across your devices as you type, encrypted end to end. The server stores and forwards sealed changes and merges nothing."
+        "title": "Documents and spreadsheets",
+        "desc": "Write long-form text in a rich text editor and have it sync across your devices as you type, encrypted end to end. The server stores and forwards sealed changes and merges nothing. Encrypted spreadsheets sync across your devices too."
       }
     ],
-    "soon": {
-      "badge": "Planned for December 2026",
-      "title": "Encrypted files and private sharing",
-      "desc": "Encrypted storage for images and PDFs, and private sharing of one item with one person."
+    "drive": {
+      "badge": "Available now",
+      "title": "Drive and safe sharing",
+      "desc": "Upload any file into folders, with a Trash that keeps deleted items for a while. Send an item or file to another Zekke user, and the server relays a blob it cannot open."
     }
   },
   "how": {
@@ -115,7 +138,7 @@
       },
       {
         "title": "Type the phrase anywhere",
-        "desc": "Typing the phrase in a new browser enrols it as a device and restores the whole vault. Each device has its own keys and a 6-digit PIN that locks the app."
+        "desc": "Typing the phrase in a new browser enrols it as a device and restores the whole vault. Each device has its own keys and its own 6-digit device PIN, which unlocks them."
       }
     ],
     "device": {
@@ -155,13 +178,15 @@
     "subtitle": "Zekke cannot read your data, even under legal compulsion, because it never holds a key that could decrypt it.",
     "standard": {
       "title": "Standard mode",
-      "badge": "The server never sees the PIN",
-      "desc": "The PIN unlocks your keys on that device. The server limits the guesses without ever seeing it, and after too many wrong tries that device is enrolled again with your phrase."
+      "badge": "Recommended",
+      "desc": "The recovery phrase alone protects the account, and each device has its own 6-digit device PIN. The server counts every guess without ever seeing the PIN. After ten wrong tries, that device forgets the account until you type your phrase again. You can upgrade to Paranoid at any time, from Settings.",
+      "bestFor": "Best for: most people. It is the default and the recommended choice."
     },
     "paranoid": {
       "title": "Paranoid mode",
       "badge": "Two factors",
-      "desc": "Everything your phrase signs also needs an account PIN, so a stolen phrase enrols nothing. The server limits the guesses without ever seeing it. Forgetting the account PIN ends the account."
+      "desc": "Two things protect the account: your recovery phrase and a 6-digit account PIN. Adding a device with your phrase, removing devices and deleting the account all need the account PIN, so a stolen phrase cannot do any of them. Paranoid cannot be turned off, and a forgotten account PIN ends the account.",
+      "bestFor": "Best for: people who fear their phrase being found or copied, and accept the risk of forgetting the account PIN."
     },
     "lose": {
       "title": "Lose the phrase, lose the vault.",
@@ -169,7 +194,7 @@
     },
     "postQuantum": {
       "title": "Post-quantum where it counts",
-      "desc": "Data at rest uses AES-256-GCM, which survives quantum attacks. Sharing between accounts uses PQXDH, a hybrid of X25519 and ML-KEM-768, so an attacker must break both a classical and a post-quantum algorithm."
+      "desc": "Data at rest uses AES-256-GCM, which is considered resistant to known quantum attacks. Sharing between accounts uses PQXDH, a hybrid of X25519 and ML-KEM-768, so an attacker must break both a classical and a post-quantum algorithm."
     }
   },
   "specs": {
@@ -203,7 +228,7 @@
       },
       {
         "label": "PIN rationing",
-        "value": "OPRF (RFC 9497, ristretto255-SHA512): the server counts guesses and never sees the PIN"
+        "value": "OPRF (RFC 9497, ristretto255-SHA512): the server counts guesses and never sees either PIN"
       },
       {
         "label": "PIN derivation",
@@ -215,7 +240,7 @@
     "eyebrow": "Pricing",
     "title": "Free to start. Paid plans add storage.",
     "bullets": [
-      "A free tier.",
+      "A free tier with 500 MB of storage.",
       "Paid plans add storage. Final prices are not published yet.",
       "No ads, no tracking, no cookies."
     ],
@@ -238,14 +263,14 @@
       {
         "date": "September 2026",
         "badge": "Live now",
-        "title": "Staging release",
-        "desc": "The vault, encrypted notes and synced documents, in Standard and Paranoid mode.",
+        "title": "Staging",
+        "desc": "Secrets, passwords, notes, documents, spreadsheets, Drive and safe sharing all work today, in Standard and Paranoid mode.",
         "link": "Try it at test-app.zekke.io"
       },
       {
-        "date": "December 2026",
-        "title": "Drive and private sharing",
-        "desc": "Encrypted files, plus private sharing of one item with one person."
+        "date": "Next",
+        "title": "Coming next",
+        "desc": "Calendar and To-do, a public inbox link anyone can use to send you files without an account, a Gallery for photos and videos, and a space for official papers like your passport and contracts."
       },
       {
         "date": "2027",
@@ -256,12 +281,12 @@
   },
   "cta": {
     "title": "Generate your phrase. Keep it safe. That is the whole account.",
-    "desc": "The staging release is live: the vault, encrypted notes and synced documents, in Standard and Paranoid mode.",
+    "desc": "Staging is open. Create a free account with 500 MB of encrypted storage: no email, no password.",
     "tryApp": "Try the app",
     "joinWaitlist": "Join the waitlist"
   },
   "footer": {
-    "description": "A zero-knowledge encrypted vault for passwords, seed phrases, notes and long documents. Built by Zekke LLC.",
+    "description": "A zero-knowledge personal drive for passwords, seed phrases, notes, documents and files. Built by Cryple LLC.",
     "product": "Product",
     "tryApp": "Try the app",
     "how": "How it works",
@@ -272,7 +297,7 @@
     "privacyPolicy": "Privacy policy",
     "termsOfService": "Terms of service",
     "language": "Language",
-    "copyright": "© 2026 Zekke LLC · 30 N Gould St Ste R, Sheridan, WY 82801, USA",
+    "copyright": "© 2026 Cryple LLC · 30 N Gould St Ste R, Sheridan, WY 82801, USA",
     "contact": "Contact:"
   },
   "form": {
@@ -332,7 +357,7 @@
       },
       {
         "title": "9. Contact Us",
-        "content": "If you have any questions about these Terms, please contact us at: contact@Zekke.io or by mail at Zekke LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA.",
+        "content": "If you have any questions about these Terms, please contact us at: contact@zekke.io or by mail at Cryple LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA.",
         "items": []
       }
     ]
@@ -344,7 +369,7 @@
     "sections": [
       {
         "title": "1. Introduction",
-        "content": "Welcome to Zekke! The services are operated by Zekke LLC, located at 30 N Gould St Ste R, Sheridan, WY 82801, USA. We respect your privacy and are committed to protecting your personal data. This Privacy Policy will inform you as to how we look after your personal data when you visit our website.",
+        "content": "Welcome to Zekke! The services are operated by Cryple LLC, located at 30 N Gould St Ste R, Sheridan, WY 82801, USA. We respect your privacy and are committed to protecting your personal data. This Privacy Policy will inform you as to how we look after your personal data when you visit our website.",
         "note": null,
         "items": [],
         "extra": null,
@@ -388,7 +413,7 @@
       },
       {
         "title": "6. Contact Us",
-        "content": "If you have any questions about this Privacy Policy, please contact us at: contact@Zekke.io or by mail at Zekke LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA.",
+        "content": "If you have any questions about this Privacy Policy, please contact us at: contact@zekke.io or by mail at Cryple LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA.",
         "note": null,
         "items": [],
         "extra": null,
@@ -456,7 +481,7 @@
       },
       {
         "title": "7. Contact Information",
-        "content": "For urgent security disclosures, or questions regarding this policy, please reach out directly: contact@Zekke.io or by mail at Zekke LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA.",
+        "content": "For urgent security disclosures, or questions regarding this policy, please reach out directly: contact@zekke.io or by mail at Cryple LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA.",
         "note": null,
         "items": []
       }

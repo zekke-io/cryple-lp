@@ -4,6 +4,8 @@ The marketing site for the Zekke app. Next.js 16 App Router, no CSS framework �
 
 Product overview: [application-overview.md](../api-general/docs/application-overview.md)
 
+**Names.** Zekke is the commercial name and is used everywhere the product is meant: the wordmark, the copy, the page titles. **Cryple LLC** is the company registered in Wyoming and appears only where the formal name is required: the footer ("Built by Cryple LLC", the copyright line), the legal pages, the `legalName` in the structured data and `llms.txt`. Do not rename either one in bulk.
+
 **Every factual claim on the page has to agree with [`../api-general/docs`](../api-general/docs).** The security text was reviewed against it once; when the product changes, the page changes with it. Things that are easy to get wrong: the phrase is never stored on a device, each device has its own random keys, the PIN goes through an OPRF and Argon2id (not PBKDF2), and the server also sees device counts and connections.
 
 ## Design
@@ -20,17 +22,26 @@ The design is the `Zekke Landing` artifact, built on the `Zekke Brand` artifact.
 
 ### The phone mocks are decorative
 
-The hero shows two phones, one locked with a "Recovery phrase" field and one unlocked. They are plain `div`s, hidden from assistive technology, not an `<input>` and a `<button>`: a real field labelled "Recovery phrase" on a marketing page invites people to type their phrase into it. Keep it that way.
+The hero shows two phones: the app's welcome screen and its home screen, drawn from the artifact at their real size (390×877) and scaled down with CSS (`AppMock.tsx`, `.app-*` in `globals.css`). They are plain elements inside a `role="img"` wrapper, never a real `<input>` or `<button>`: a field that looks like a recovery phrase box on a marketing page invites people to type their phrase into it. Keep it that way. The sample numbers in the home screen (128 MB of 500 MB) are illustration, not data.
 
 ## Localisation
 
-Three locales: `en` (default), `pt-br`, `es`. Copy lives in `src/dictionaries/<locale>.json` and is loaded by `src/lib/dictionaries.ts`, which types every dictionary as `typeof en.json`: a key missing from `es.json` or `pt-br.json` fails `tsc`.
+Three locales: `en` (default), `pt-br`, `es`. Copy lives in `src/dictionaries/<locale>.json` and is loaded by `src/lib/dictionaries.ts`, which types every dictionary against `typeof en.json`.
+
+`en.json` is the source of truth, and `es.json` and `pt-br.json` must have exactly its shape: `src/lib/dictionaries.ts` types every dictionary as `typeof en.json`, so a missing key, an extra one or an array of a different length fails `tsc` and the build.
 
 `src/middleware.ts` rewrites `/` to `/en` internally, so the default locale never appears in the URL, and redirects `/en/*` back to `/*` with a permanent 308. Routes live under `src/app/[lang]/`. Internal links go through `localizedPath(lang, path)` from `src/lib/site.ts`, never a hand-built `/${lang}/…`, so English links never hit that redirect.
 
-**Every user-facing string belongs in all three dictionaries.** The brand tagline is "Tudo seu. Só seu." in Portuguese and "Todo tuyo. Solo tuyo." in Spanish.
+**Every user-facing string belongs in all three dictionaries.** The three languages carry the same content and the same design; there are no per-language variations. The brand tagline is "Tudo seu. Só seu." in Portuguese and "Todo tuyo. Solo tuyo." in Spanish.
 
 The language switch is three real links (`EN`, `ES`, `PT`) in the header and the three language names in the footer, each with `hreflang`, so crawlers can follow them. The current language carries `aria-current="page"`.
+
+### Terminology
+
+- **Kept in English** in both languages, as the audience uses them: zero-knowledge, seed phrase, PIN, blob, staging, Drive, OPRF and the protocol names. The recovery phrase itself is translated (*frase de recuperação*, *frase de recuperación*).
+- **Translated:** vault (*cofre*, *bóveda*), Trash (*Lixeira*, *Papelera*), spreadsheets (*planilhas*, *hojas de cálculo*), browser extension, end to end (*ponta a ponta*, *extremo a extremo*), encrypted (*criptografado* in Portuguese, *cifrado* in Spanish).
+- **Spanish is neutral Latin American** with *tú*: *celular*, *agregar*, *Configuración*, *video*. **Portuguese is Brazilian.**
+- **Standard and Paranoid** are translated as the mode names (*modo padrão* / *modo paranoico*, *modo estándar* / *modo paranoico*). If the app keeps them in English, change them here to match.
 
 Spanish and Portuguese run roughly 20–30% longer than English. The header wraps (logo, then nav, then actions) rather than truncating; check `/es` first when a nav label or button gets longer.
 
@@ -52,12 +63,12 @@ Spanish and Portuguese run roughly 20–30% longer than English. The header wrap
 
 ## SEO and metadata
 
-`src/lib/site.ts` holds the site URL (`https://zekke.io`), the locale list and the helpers every page uses to build its metadata. `pageMetadata(lang, path, title, description)` returns the title, description, canonical URL, `hreflang` alternates, Open Graph and Twitter card for one page. Change the domain there and nowhere else.
+`src/lib/site.ts` holds the site URL (`https://zekke.io`), the locale list and the helpers every page uses to build its metadata. `pageMetadata(lang, path, title, description, imageAlt)` returns the title, description, canonical URL, `hreflang` alternates, Open Graph and Twitter card for one page. Change the domain there and nowhere else.
 
-- **Titles and descriptions** come from the `meta` block of each dictionary. `[lang]/layout.tsx` sets the default title and the `%s | Zekke` template; the home page opts out of the template with an absolute title, and the legal pages use their own `title` plus a `meta.*Description`. Keep descriptions under ~160 characters, or search engines truncate them.
+- **Titles and descriptions** come from the `meta` block of each dictionary. `[lang]/layout.tsx` sets the default title and the `%s | Zekke` template; the home page opts out of the template with an absolute title, and the legal pages use their own `title` plus a `meta.*Description`. Keep titles under ~60 characters and descriptions under ~160, or search engines truncate them.
 - **Language alternates.** Each page lists all three locales plus `x-default` (English). The hreflang for `pt-br` is `pt-BR`, the BCP 47 form; `languageTag` does that mapping, and `<html lang>` uses it too.
 - **`robots.ts` / `sitemap.ts`** in `src/app/` generate `/robots.txt` and `/sitemap.xml`. The sitemap is the `pages` list × the three locales, each entry carrying its alternates. A new public page has to be added to that list.
-- **Open Graph image.** `[lang]/opengraph-image.tsx` renders a 1200×630 PNG per locale at build time from `hero.titleLine1`, `hero.titleLine2` and `meta.ogImageTagline`, in the brand colours, with `public/logo.png`. The middleware lets `/en/opengraph-image` through without its usual `/en` → `/` redirect, because Next.js puts that path in the English `og:image` tag.
+- **Social card.** `public/social-card.png` (1200×630, under 120 KB) is the image every page shares on X, LinkedIn, WhatsApp and the like. It is the `Social card 1200x630` artboard of the `Zekke Landing` artifact, exported to PNG; when that artboard changes, export it again and replace the file. It is in English for all three languages (the phone screens inside are English), but the `alt` is translated: `meta.socialCardAlt` in each dictionary. `pageMetadata` wires it into `og:image` (with width, height, type and alt) and `twitter:image`, and `metadataBase` makes the URL absolute. Social crawlers cache the card by URL, so if the file changes keep the old preview in mind: re-scrape with LinkedIn's Post Inspector, and rename the file (`social-card-2.png`) to force X and WhatsApp to refetch.
 - **Structured data.** The home page emits one JSON-LD `@graph` with `Organization`, `WebSite` and `WebApplication`. The address, the contact email and the free-tier `Offer` are facts about the company: update them in `structured-data.ts` when they change.
 - **`public/llms.txt`** is a plain-Markdown summary of Zekke for AI crawlers and assistants ([llmstxt.org](https://llmstxt.org)): what it stores, the security model, the specs, pricing, release status and the key URLs. It repeats facts from the dictionaries by hand, so a change to the roadmap, the specs or the pricing on the page has to be made there too. It is English only.
 - **Headings.** One `h1` (the hero), `h2` per section, `h3` for cards, steps and milestones. Footer column titles are paragraphs.

@@ -6,7 +6,7 @@ import { pageMetadata } from '@/lib/site';
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  return pageMetadata(lang, '/privacy', dict.privacy.title, dict.meta.privacyDescription);
+  return pageMetadata(lang, '/privacy', dict.privacy.title, dict.meta.privacyDescription, dict.meta.socialCardAlt);
 }
 
 export default async function PrivacyPolicy({ params }: { params: Promise<{ lang: string }> }) {

@@ -6,7 +6,7 @@ import { pageMetadata } from '@/lib/site';
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  return pageMetadata(lang, '/terms', dict.terms.title, dict.meta.termsDescription);
+  return pageMetadata(lang, '/terms', dict.terms.title, dict.meta.termsDescription, dict.meta.socialCardAlt);
 }
 
 export default async function TermsOfService({ params }: { params: Promise<{ lang: string }> }) {

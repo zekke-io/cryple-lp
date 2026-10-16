@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HomeScreen, WelcomeScreen } from "@/components/AppMock";
 import Armadillo from "@/components/Armadillo";
 import ArmadilloSprite from "@/components/ArmadilloSprite";
 import EmailForm from "@/components/EmailForm";
@@ -10,7 +11,6 @@ import { getDictionary } from "@/lib/dictionaries";
 import { TEST_APP_URL, localizedPath, pageMetadata } from "@/lib/site";
 import { structuredData } from "@/lib/structured-data";
 
-const homeIcons: IconName[] = ["secrets", "passwords", "notes", "documents", "files"];
 const storeIcons: IconName[] = ["secrets", "passwords", "notes", "documents"];
 const milestoneDots = ["dot-live", "dot-next", "dot-later"];
 
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const { lang } = await params;
   const dict = await getDictionary(lang);
   return {
-    ...pageMetadata(lang, "", dict.meta.title, dict.meta.description),
+    ...pageMetadata(lang, "", dict.meta.title, dict.meta.description, dict.meta.socialCardAlt),
     title: { absolute: dict.meta.title },
   };
 }
@@ -42,59 +42,23 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               <span>{dict.hero.badge}</span>
             </a>
             <h1>
-              {dict.hero.titleLine1}
-              <br />
-              <span className="accent">{dict.hero.titleLine2}</span>
+              {dict.hero.titleLine1} <span className="accent">{dict.hero.titleLine2}</span>
             </h1>
             <p className="hero-subtitle">{dict.hero.subtitle}</p>
             <div className="hero-actions">
               <a className="btn btn-lg" href={TEST_APP_URL}>{dict.hero.tryApp}</a>
-              <a className="btn btn-lg btn-outline" href="#waitlist">{dict.hero.joinWaitlist}</a>
+              <span className="join-wrap">
+                <a className="btn btn-lg btn-outline" href="#waitlist">{dict.hero.joinWaitlist}</a>
+                <span className="sticker">{dict.hero.discountBadge}</span>
+              </span>
             </div>
             <p className="hero-note">{dict.hero.note}</p>
           </div>
 
           <div className="hero-art">
-            <div className="phones" role="img" aria-label={dict.hero.openLabel}>
-              <div className="phone phone-lock" aria-hidden="true">
-                <div className="phone-screen">
-                  <div className="lock-center">
-                    <Armadillo symbol="ball-cream" width={136} height={136} />
-                    <div className="lock-word">zekke</div>
-                    <div className="lock-tagline">{dict.hero.lock.tagline}</div>
-                  </div>
-                  <div className="lock-form">
-                    <div className="lock-label">{dict.hero.lock.phraseLabel}</div>
-                    <div className="mock-input">{dict.hero.lock.phrasePlaceholder}</div>
-                    <div className="mock-button mock-button-ink">{dict.hero.lock.open}</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="phone phone-home hide-small" aria-hidden="true">
-                <div className="phone-screen">
-                  <div className="home-head">
-                    <Armadillo symbol="open-app" width={50} height={50} />
-                    <div>
-                      <div className="home-greeting">{dict.hero.home.greeting}</div>
-                      <div className="home-note">{dict.hero.home.note}</div>
-                    </div>
-                  </div>
-                  <div className="home-list">
-                    {dict.hero.home.items.map((item, index) => {
-                      const soon = index === homeIcons.length - 1;
-                      return (
-                        <div key={item} className={soon ? "home-row home-row-soon" : "home-row"}>
-                          <span className="icon-tile"><Icon name={homeIcons[index]} size={20} /></span>
-                          <span className="home-row-label">{item}</span>
-                          {soon && <span className="soon-badge">{dict.hero.home.soon}</span>}
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div className="mock-button mock-button-orange">{dict.hero.home.lock}</div>
-                </div>
-              </div>
+            <div className="phones">
+              <WelcomeScreen dict={dict} />
+              <HomeScreen dict={dict} />
             </div>
           </div>
         </section>
@@ -124,13 +88,13 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                 <p>{item.desc}</p>
               </div>
             ))}
-            <div className="card card-wide card-soon">
-              <div className="card-soon-head">
+            <div className="card card-wide card-drive">
+              <div className="card-drive-head">
                 <span className="card-icon"><Icon name="files" size={28} /></span>
-                <span className="pill pill-orange">{dict.stores.soon.badge}</span>
+                <span className="pill pill-orange">{dict.stores.drive.badge}</span>
               </div>
-              <h3>{dict.stores.soon.title}</h3>
-              <p>{dict.stores.soon.desc}</p>
+              <h3>{dict.stores.drive.title}</h3>
+              <p>{dict.stores.drive.desc}</p>
             </div>
           </div>
         </section>
@@ -206,6 +170,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                   <span className="pill pill-amber">{dict.security.standard.badge}</span>
                 </div>
                 <p>{dict.security.standard.desc}</p>
+                <p className="panel-best">{dict.security.standard.bestFor}</p>
               </div>
               <div className="panel panel-paranoid">
                 <div className="panel-head">
@@ -213,6 +178,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                   <span className="pill pill-violet">{dict.security.paranoid.badge}</span>
                 </div>
                 <p>{dict.security.paranoid.desc}</p>
+                <p className="panel-best">{dict.security.paranoid.bestFor}</p>
               </div>
             </div>
 

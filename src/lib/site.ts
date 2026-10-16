@@ -37,8 +37,10 @@ export const localizedPath = (lang: string, path = "") => {
   return `${prefix}${path}` || "/";
 };
 
-export const localizedUrl = (lang: string, path = "") =>
-  `${SITE_URL}${localizedPath(lang, path)}`;
+export const localizedUrl = (lang: string, path = "") => {
+  const localized = localizedPath(lang, path);
+  return localized === "/" ? SITE_URL : `${SITE_URL}${localized}`;
+};
 
 export const languageAlternates = (path = "") => ({
   ...Object.fromEntries(
@@ -47,11 +49,19 @@ export const languageAlternates = (path = "") => ({
   "x-default": localizedUrl(defaultLocale, path),
 });
 
+export const socialCard = {
+  url: "/social-card.png",
+  width: 1200,
+  height: 630,
+  type: "image/png",
+};
+
 export const pageMetadata = (
   lang: string,
   path: string,
   title: string,
   description: string,
+  imageAlt: string,
 ): Metadata => ({
   title,
   description,
@@ -69,10 +79,12 @@ export const pageMetadata = (
     alternateLocale: locales
       .filter((locale) => locale !== lang)
       .map(openGraphLocale),
+    images: [{ ...socialCard, alt: imageAlt }],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
+    images: [{ url: socialCard.url, alt: imageAlt }],
   },
 });
