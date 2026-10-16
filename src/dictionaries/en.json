@@ -287,6 +287,8 @@
   },
   "footer": {
     "description": "A zero-knowledge personal drive for passwords, seed phrases, notes, documents and files. Built by Cryple LLC.",
+    "openSource": "The Zekke clients are open source.",
+    "github": "View the code on GitHub",
     "product": "Product",
     "tryApp": "Try the app",
     "how": "How it works",

@@ -298,6 +298,8 @@
     "language": "Idioma",
     "contact": "Contacto:",
     "description": "Un drive personal zero-knowledge para contraseñas, seed phrases, notas, documentos y archivos. Creado por Cryple LLC.",
+    "openSource": "Los clientes de Zekke son de código abierto.",
+    "github": "Ver el código en GitHub",
     "copyright": "© 2026 Cryple LLC · 30 N Gould St Ste R, Sheridan, WY 82801, EE. UU."
   },
   "form": {

@@ -2,7 +2,7 @@
 
 > Zekke is a zero-knowledge personal drive for passwords, seed phrases, notes, documents, spreadsheets and files. Everything is encrypted on the user's device before it is sent, with keys that only the user holds. Zekke's servers hold no key that opens any of it. The recovery phrase is the account: there is no email, no password, and no account recovery of any kind.
 
-Zekke is the commercial name of Cryple LLC (Sheridan, Wyoming, USA). The website is available in English, Spanish and Brazilian Portuguese.
+Zekke is the commercial name of Cryple LLC (Sheridan, Wyoming, USA). The website is available in English, Spanish and Brazilian Portuguese. The Zekke clients are open source: https://github.com/zekke-io
 
 ## What it stores
 
@@ -65,4 +65,5 @@ Zekke is the commercial name of Cryple LLC (Sheridan, Wyoming, USA). The website
 ## Contact
 
 - Email: contact@zekke.io
+- Source code (open-source clients): https://github.com/zekke-io
 - Mail: Cryple LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA

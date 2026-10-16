@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import type { Dictionary } from '@/lib/dictionaries';
-import { CONTACT_EMAIL, TEST_APP_URL, languageTag, localeLabels, locales, localizedPath } from '@/lib/site';
+import { CONTACT_EMAIL, GITHUB_URL, TEST_APP_URL, languageTag, localeLabels, locales, localizedPath } from '@/lib/site';
 import Armadillo from './Armadillo';
+import GitHubMark from './GitHubMark';
 
 export default function SiteFooter({ lang, dict }: { lang: string; dict: Dictionary }) {
   const productLinks = [
@@ -26,6 +27,11 @@ export default function SiteFooter({ lang, dict }: { lang: string; dict: Diction
               <span className="brand-word">zekke</span>
             </div>
             <p className="footer-description">{dict.footer.description}</p>
+            <p className="footer-description">{dict.footer.openSource}</p>
+            <a className="footer-github" href={GITHUB_URL} rel="noopener">
+              <GitHubMark />
+              {dict.footer.github}
+            </a>
           </div>
           <div className="footer-column">
             <p className="footer-column-title">{dict.footer.product}</p>

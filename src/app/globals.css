@@ -1542,6 +1542,22 @@ input::placeholder {
   line-height: 1.55;
 }
 
+.footer-github {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--line);
+  font-size: 16px;
+  font-weight: 800;
+  padding: 10px 0;
+  text-decoration: none;
+}
+
+.footer-github:hover {
+  color: var(--cream);
+}
+
 .footer-column {
   flex: 1 1 160px;
   min-width: 0;

@@ -4,6 +4,7 @@ export const SITE_URL = "https://zekke.io";
 export const SITE_NAME = "Zekke";
 export const CONTACT_EMAIL = "contact@zekke.io";
 export const TEST_APP_URL = "https://test-app.zekke.io";
+export const GITHUB_URL = "https://github.com/zekke-io";
 
 export const locales = ["en", "es", "pt-br"] as const;
 export const defaultLocale = "en";

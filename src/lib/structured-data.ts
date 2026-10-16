@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL, SITE_NAME, SITE_URL, languageTag, localizedUrl } from './site';
+import { CONTACT_EMAIL, GITHUB_URL, SITE_NAME, SITE_URL, languageTag, localizedUrl } from './site';
 
 export const structuredData = (lang: string, description: string) => ({
   '@context': 'https://schema.org',
@@ -11,6 +11,7 @@ export const structuredData = (lang: string, description: string) => ({
       url: SITE_URL,
       logo: `${SITE_URL}/logo.png`,
       email: CONTACT_EMAIL,
+      sameAs: [GITHUB_URL],
       address: {
         '@type': 'PostalAddress',
         streetAddress: '30 N Gould St Ste R',
